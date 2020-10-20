@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MEDIA_URL = "/scans/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'madripweb/scans')
 
 # Application definition
 

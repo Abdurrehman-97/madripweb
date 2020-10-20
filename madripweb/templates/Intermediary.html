@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>User Dashboard</title>
+    </head>
+
+    <body>
+        {% if data2 %}
+        {{ data2 | safe}}
+        {% endif %}
+        <button onclick="location.href={% url 'RetinaUpload' %}">
+        Upload Scan
+        </button>
+    
+    </body>
+
+
+</html>

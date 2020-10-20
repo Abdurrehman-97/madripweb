@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+{% load staticfiles %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/Upload/RetinaUpload.css' %}">
+
+<script type="text/javascript" src="{% static 'js/Upload/RetinaUpload.js' %} "></script>
+<h2>File Upload & Image Preview</h2>
+{% comment %} <p class="lead">No Plugins <b>Just Javascript</b></p> {% endcomment %}
+</head>
+
+<body>
+  <!-- Upload  -->
+<form id="file-upload-form" action="/ProcessUpload/" class="uploader" method="POST"enctype="multipart/form-data" >
+  {% csrf_token %}
+  <input id="file-upload" type="file" name="fileUpload" accept="image/*" required/>
+  {{data_external}}
+
+
+  <label for="file-upload" id="file-drag">
+    <img id="file-image" src="#" alt="Preview" class="hidden">
+    <div id="start">
+      <i class="fa fa-upload" aria-hidden="true"></i>
+      <div>Select a file or drag here</div>
+      <div id="notimage" class="hidden">Please select an image</div>
+      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+      <input type="submit" value="Submit">
+    </div>
+    <div id="response" class="hidden">
+      <div id="messages"></div>
+      <progress class="progress" id="file-progress" value="0">
+        <span>0</span>%
+      </progress>
+    </div>
+  </label>
+</form>  
+
+</body>
+</html>
