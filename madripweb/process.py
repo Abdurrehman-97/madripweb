@@ -141,7 +141,7 @@ class Data_Preprocess:
 
 
     def Preprocess_Upload(self):
-      print(BASE_DIR)
+      
       os.chdir(os.path.join(BASE_DIR, 'madripweb/scans'))
       res=self.ResizeImage()
       os.chdir(os.path.join(BASE_DIR, 'madripweb/scans/temp'))
@@ -227,9 +227,9 @@ class Stage_Identification:
         return(predicted.detach().numpy()[0])
 
     def DisplayResult(self):
-        model = torch.hub.load('pytorch/vision:v0.6.0', 'googlenet', pretrained=False)
+        model = torch.hub.load('pytorch/vision:v0.6.0', 'googlenet', pretrained=False, init_weights=True)
         PATH = os.path.join(BASE_DIR, 'madripweb/dr3.pth')
-        model.load_state_dict(torch.load(PATH))
+        model.load_state_dict(torch.load(PATH,map_location='cpu'))
 
         print("Model Loaded")
 
@@ -248,6 +248,6 @@ class Stage_Identification:
 
 obj = Data_Preprocess(image_name)
 obj.Preprocess_Upload()
-# identify = Stage_Identification()
-# identify.setsubjectImage(image_name)
-# identify.DisplayResult()
+identify = Stage_Identification()
+identify.setsubjectImage(image_name)
+identify.DisplayResult()

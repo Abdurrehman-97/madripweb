@@ -60,5 +60,5 @@ def ProcessUpload(request):
     print("file full url: ",f_url)
     #print("temp url: ",temp_url)
     dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripwebprocess.py'),f_name],shell=False,stdout=PIPE)
-    print("Process Directory ..... ",dir.stdout)
+    print("......... ",dir.stdout)
     return render(request,'Home.html')
