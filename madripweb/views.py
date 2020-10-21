@@ -3,6 +3,8 @@ import requests
 from subprocess import run,PIPE
 import sys
 from django.core.files.storage import FileSystemStorage
+import os
+from madripweb.settings import THE_DIR
 
 def home(request):
     return render(request, 'Home.html')
@@ -30,7 +32,7 @@ def Register(request):
     phn = request.POST.get('code') + request.POST.get('phone')
     uname=request.POST.get('uname')
     pwd=request.POST.get('pass')
-    out = run([sys.executable,'C:\\Users\\DELL\\Desktop\\MADRIP_Web Module\\MADRIP_Web Module\\madripweb\\madripweb\\verify.py',option,name,email,org,phn,uname,pwd],shell=False,stdout=PIPE)
+    out = run([sys.executable,os.path.join(THE_DIR, 'verify.py'),option,name,email,org,phn,uname,pwd],shell=False,stdout=PIPE)
     print(out)
 
     return render(request, 'Intermediary.html',{'data1' : out.stdout})
@@ -40,7 +42,7 @@ def Signin(request):
     option = "L"
     uname=request.POST.get('uname')
     pwd=request.POST.get('pass')
-    out = run([sys.executable,'C:\\Users\\DELL\\Desktop\\MADRIP_Web Module\\MADRIP_Web Module\\madripweb\\madripweb\\verify.py',option,uname,pwd],shell=False,stdout=PIPE)
+    out = run([sys.executable,os.path.join(THE_DIR, 'verify.py'),option,uname,pwd],shell=False,stdout=PIPE)
     print(out)
     return render(request, 'Intermediary.html',{"data2" : out.stdout})
 
@@ -57,5 +59,5 @@ def ProcessUpload(request):
     print("file raw url: ", f_name)
     print("file full url: ",f_url)
     #print("temp url: ",temp_url)
-    out = run([sys.executable,'C:\\Users\\DELL\\Desktop\\MADRIP_Web Module\\MADRIP_Web Module\\madripweb\\madripweb\\process.py',f_name],shell=False,stdout=PIPE)
+    run([sys.executable,os.path.join(THE_DIR, 'process.py'),f_name],shell=False,stdout=PIPE)
     return render(request,'Home.html')
