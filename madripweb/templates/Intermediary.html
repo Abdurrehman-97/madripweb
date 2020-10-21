@@ -1,17 +1,225 @@
 <!DOCTYPE html>
-
+{% load staticfiles %}
 <html>
     <head>
-        <title>User Dashboard</title>
+    	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="{% static 'img/favicon.png' %} " type="image/png">
+	<title>MADRIP</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css ' %}"">
+	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'vendors/lightbox/simpleLightbox.css' %} ">
+	<link rel="stylesheet" href="{% static 'vendors/nice-select/css/nice-select.css' %} ">
+	<link rel="stylesheet" href="{% static 'vendors/animate-css/animate.css' %} ">
+	<link rel="stylesheet" href="{% static 'vendors/jquery-ui/jquery-ui.css' %}">
+	<!-- main css -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
     </head>
 
     <body>
-        {% if data2 %}
-        {{ data2 | safe}}
-        {% endif %}
-        <button onclick="location.href={% url 'RetinaUpload' %}">
-        Upload Scan
-        </button>
+        <!--================Header Menu Area =================-->
+	<header class="header_area">
+		<div class="top_menu row m0">
+			<div class="container">
+				<div class="float-left">
+					<ul class="left_side">
+						<li>
+							<a href="#">
+								<i class="fa fa-facebook-f"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-instagram"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-linkedin"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="float-right">
+					<ul class="right_side">
+						<li>
+							<a href="#">
+								<i class="lnr lnr-phone-handset"></i>
+								051-123-456
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="lnr lnr-envelope"></i>
+								fyp.madrip09@gmail.com
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="{% url 'Home' %}">
+						<img src="{% static 'img/logo2.png' %}" alt="logo2">
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					 aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<div class="row ml-0 w-100">
+							<div class="col-lg-12 pr-0">
+								<ul class="nav navbar-nav center_nav pull-right">
+									<li class="nav-item active">
+										<a class="nav-link" href="{% url 'Home' %}">Home</a>
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+
+    
+	<!--================Header Menu Area =================-->
+       <section class="home_banner_area">
+		<div class="banner_inner d-flex align-items-center">
+			<div class="container">
+				<div class="banner_content row">
+					<div class="col-lg-12">
+						<h1>Welcome {{uname}}</h1>
+						<p>
+							<br><br><br>
+
+                            Upload Scan to proceed further!
+						</p>
+						<a class="main_btn mr-10" href="{% url 'RetinaUpload' %}">Upload Scan</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+        
+        
+
+
+        <section class="service_area section_gap">
+		<div class="container">
+			<div class="row justify-content-center section-title-wrap">
+				<div class="col-lg-12">
+					<h1>Our Offered Services</h1>
+					<p>
+						Following are the services which MADRIP provides.
+					</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="single_service">
+						<span class="lnr lnr-rocket"></span>
+						<a href="#">
+							<h4>Defective Area Detection</h4>
+						</a>
+						<p>
+							The effected area of the retina scan can be detected, and system can highlight all the effected areas extracted from the retina scan.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="single_service">
+						<span class="lnr lnr-heart-pulse"></span>
+						<a href="#">
+							<h4>Identification of the stage</h4>
+						</a>
+						<p>
+							With the help of MADRIP youy can easily identify the stage of diabetic retinopathy, our system will tell the stage of diabetic retinopathy by scanning the retina scan, once the effected areas are highlighted.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="single_service">
+						<span class="lnr lnr-bug"></span>
+						<a href="#">
+							<h4>MultiDimensional Analysis</h4>
+						</a>
+						<p>
+							You can have a clear insight of the specific retina scan, which includes the trends of the stage of diabetic retinopathy, some facts about the result you get with some attributes associated with it.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="single_service">
+						<span class="lnr lnr-users"></span>
+						<a href="#">
+							<h4>Detailed Report</h4>
+						</a>
+						<p>
+							You can have a detailed report of the retina scan which includes all the information regarding to that scan at one place.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+        <footer class="footer-area section_gap">
+				<p class="col-lg-5 col-md-2 footer-text m-0" >
+				This is a Final Year Project of students of FAST NUCES Islamabad Campus batch 2016....
+				<br><br>
+				</p>
+				<div class="col-lg-2 col-md-6">
+					<div class="single-footer-widget mail-chimp">
+						<h6 class="mb-20">Contact Us</h6>
+						<p>
+							FAST NUCES, Islamabad, Pakistan
+							051-123-456
+						</p>
+					</div>
+				</div>
+
+			
+				<div class="col-lg-2 col-md-2 footer-social">
+					<a href="#">
+						<i class="fa fa-facebook"></i>
+					</a>
+					<a href="#">
+						<i class="fa fa-twitter"></i>
+					</a>
+					<a href="#">
+						<i class="fa fa-instagram"></i>
+					</a>
+					<a href="#">
+						<i class="fa fa-linkedin"></i>
+					</a>
+				</div>
+	</footer>
+	<!--================ End footer Area =================-->
+
     
     </body>
 

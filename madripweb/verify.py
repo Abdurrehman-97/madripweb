@@ -116,6 +116,6 @@ if sys.argv[1] == "L":
     check=u.SignIn(sys.argv[2],sys.argv[3])
 
     if check:
-        print("Log In successful")
+        print("Successful login")
     else:
-        print("Cannot Log In")
+        print("cannot login")

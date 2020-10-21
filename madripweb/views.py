@@ -44,7 +44,7 @@ def Signin(request):
     pwd=request.POST.get('pass')
     out = run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb/verify.py'),option,uname,pwd],shell=False,stdout=PIPE)
     print(out)
-    return render(request, 'Intermediary.html',{"data2" : out.stdout})
+    return render(request, 'Intermediary.html',{"data2" : out.stdout,"uname" : uname})
 
 def RetinaUpload(request):
     return render(request,'RetinaScanUpload.html')
@@ -59,6 +59,6 @@ def ProcessUpload(request):
     print("file raw url: ", f_name)
     print("file full url: ",f_url)
     #print("temp url: ",temp_url)
-    dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripwebprocess.py'),f_name],shell=False,stdout=PIPE)
+    dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb/process.py'),f_name],shell=False,stdout=PIPE)
     print("......... ",dir.stdout)
     return render(request,'Home.html')
