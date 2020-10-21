@@ -159,8 +159,89 @@ class Data_Preprocess:
       os.rmdir('temp')
       os.mkdir('temp')
 
+#--------------Identification---------------
+
+class testIMDataset(Dataset):
+    """Face Landmarks dataset."""
+
+    def __init__(self, listNm, root_dir, transform=None):
+        self.fundus_samples = listNm
+        self.root_dir = root_dir
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.fundus_samples)
+
+    def __getitem__(self, idx):
+        if torch.is_tensor(idx):
+            idx = idx.tolist()
+        sample = Image.open(self.root_dir+"/"+self.fundus_samples[idx])
+        if self.transform:
+            sample = self.transform(sample)
+        return sample
+
+class Stage_Identification:
+
+
+    def __init__(self):
+        self.Stage=-1
+        self.stageDescription=""
+        self.subjectImage=""
+
+    def setStage(self,stage):
+        self.Stage=stage
+        pass
+  
+    def setstageDescription(self,desc):
+        self.stageDescription=desc
+        pass
+
+    def setsubjectImage(self,name):
+        self.subjectImage=name
+        pass
+
+    def getStage(self):
+        return self.Stage
+
+    def getstageDescription(self):
+        return self.stageDescription
+
+    def getsubjectImage(self):
+        return self.subjectImage
+
+
+    def detectStage(self,model,imgnamelist,rootdir,trans):
+        model.eval()
+        # model.to(device)
+        dse = testIMDataset(imgnamelist,rootdir,trans)
+        dseloader = torch.utils.data.DataLoader(dse, batch_size=1,
+                                            shuffle=False, num_workers=0)
+        dataiter = iter(dseloader)
+        image= dataiter.next()
+        output = model(image)
+        _, predicted = torch.max(output.data,1)
+        return(predicted.detach().numpy()[0])
+
+    def DisplayResult(self):
+        model = torch.hub.load('pytorch/vision:v0.6.0', 'googlenet', pretrained=False)
+        PATH = 'C:\\Users\\DELL\\Desktop\\MADRIP_Web Module\\MADRIP_Web Module\\madripweb\\madripweb\\dr3.pth'
+        model.load_state_dict(torch.load(PATH))
+
+        model.eval()
+        model.to("cpu")
+
+        t = transforms.Compose([transforms.Resize((512,512)),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+        rootdir="C:\\Users\\DELL\\Desktop\\MADRIP_Web Module\\MADRIP_Web Module\\madripweb\\madripweb\\scans\\Results"
+        imgnamelist=self.subjectImage
+        print("Retinopathy Stage: ",Stage_Identification.detectStage(model,[imgnamelist],rootdir,t))
 
 #main
 
 obj = Data_Preprocess(image_name)
 obj.Preprocess_Upload()
+identify = Stage_Identification()
+identify.setsubjectImage(image_name)
+identify.DisplayResult()

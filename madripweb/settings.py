@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'madripweb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'MADRIP',
-        'HOST' : 'mongodb+srv://test_user:testuser123@fyp.djj0y.gcp.mongodb.net/MADRIP?retryWrites=true&w=majority' ,
-        'USER' : 'test_user' ,
-        'PASSWORD' : 'testuser123' ,
+        # 'ENGINE': 'djongo',
+        # 'NAME': 'MADRIP',
+        # 'HOST' : 'mongodb+srv://test_user:testuser123@fyp.djj0y.gcp.mongodb.net/MADRIP?retryWrites=true&w=majority' ,
+        # 'USER' : 'test_user' ,
+        # 'PASSWORD' : 'testuser123' ,
         
     }
 }
