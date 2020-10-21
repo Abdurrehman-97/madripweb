@@ -31,3 +31,4 @@ urlpatterns = [
     path('ProcessUpload/', views.ProcessUpload,name='ProcessUpload')
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

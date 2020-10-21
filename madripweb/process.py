@@ -12,8 +12,10 @@ from torch.utils.data import Dataset, DataLoader
 import sys
 from subprocess import run,PIPE
 from django.core.files.storage import FileSystemStorage
-from django.conf import settings
-from settings import THE_DIR
+#from django.conf import settings
+# from . import settings
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 image_name=sys.argv[1]
 class Data_Preprocess:
@@ -139,15 +141,15 @@ class Data_Preprocess:
 
 
     def Preprocess_Upload(self):
-
-      os.chdir(os.path.join(THE_DIR, 'scans'))
+      print(BASE_DIR)
+      os.chdir(os.path.join(BASE_DIR, 'madripweb/scans'))
       res=self.ResizeImage()
-      os.chdir(os.path.join(THE_DIR, 'scans\\temp'))
+      os.chdir(os.path.join(BASE_DIR, 'madripweb/scans/temp'))
       cv2.imwrite(self.ImageName,res)
       back = self.BackgroundReduction()
       cv2.imwrite(self.ImageName,back)
       cr=self.Crop()
-      os.chdir(os.path.join(THE_DIR, 'scans\\Results'))
+      os.chdir(os.path.join(BASE_DIR, 'madripweb/scans/Results'))
       cr.save(self.ImageName)
       # ed=self.EdgeDetection()
       # %cd "/content/drive/My Drive/User_Image/Result"
@@ -155,9 +157,9 @@ class Data_Preprocess:
 
       #remove the temp folder
 
-      os.chdir(os.path.join(THE_DIR, 'scans\\temp'))
+      os.chdir(os.path.join(BASE_DIR, 'madripweb/scans/temp'))
       os.remove(image_name)
-      os.chdir(os.path.join(THE_DIR, 'scans'))
+      os.chdir(os.path.join(BASE_DIR, 'madripweb/scans'))
       os.rmdir('temp')
       os.mkdir('temp')
 
@@ -226,7 +228,7 @@ class Stage_Identification:
 
     def DisplayResult(self):
         model = torch.hub.load('pytorch/vision:v0.6.0', 'googlenet', pretrained=False)
-        PATH = os.path.join(THE_DIR, 'dr3.pth')
+        PATH = os.path.join(BASE_DIR, 'madripweb/dr3.pth')
         model.load_state_dict(torch.load(PATH))
 
         print("Model Loaded")
@@ -238,7 +240,7 @@ class Stage_Identification:
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
-        rootdir=os.path.join(THE_DIR, 'scans\\Results')
+        rootdir=os.path.join(BASE_DIR, 'madripweb/scans/Results')
         imgnamelist=self.subjectImage
         print("Retinopathy Stage: ",self.detectStage(model,[imgnamelist],rootdir,t))
 
@@ -246,6 +248,6 @@ class Stage_Identification:
 
 obj = Data_Preprocess(image_name)
 obj.Preprocess_Upload()
-identify = Stage_Identification()
-identify.setsubjectImage(image_name)
-identify.DisplayResult()
+# identify = Stage_Identification()
+# identify.setsubjectImage(image_name)
+# identify.DisplayResult()
