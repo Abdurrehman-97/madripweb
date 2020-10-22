@@ -55,10 +55,22 @@ class User:
         return self.Phn
     
     def getOrganisation(self):
+
         return self.Organisation
 
     def getfileName(self):
-      return self.fileName
+
+        return self.fileName
+
+    def UserInfo(self):
+
+        d = dict()
+        d['name'] = u.getName()
+        d['uname'] = u.getuserName()
+        d['email'] = u.getEmail()
+        d['phn'] = u.getPhone()
+        d['org'] = u.getOrganisation()
+        return d
     
     def SignIn(self,uname,password):
         #verrify the user details
@@ -119,3 +131,7 @@ if sys.argv[1] == "L":
         print("Successful login")
     else:
         print("cannot login")
+
+if sys.argv[1] == "I":
+
+    print(u.UserInfo())

@@ -28,7 +28,10 @@ urlpatterns = [
     path('Signup/', views.Signup,name='Signup'),
     path('Register/', views.Register,name='Register'),
     path('RetinaUpload/', views.RetinaUpload,name='RetinaUpload'),
-    path('ProcessUpload/', views.ProcessUpload,name='ProcessUpload')
-    
+    path('ProcessUpload/', views.ProcessUpload,name='ProcessUpload'),
+    path('UserOptions/', views.UserOptions,name='UserOptions'),
+    path('UserInfo/', views.UserInfo,name='UserInfo'),
+    path('Results/',views.IdentifyUpload,name="Results")
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

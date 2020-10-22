@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	  <link rel="icon" href="{% static 'img/upload.png' %} " type="image/png">
+	  <link rel="icon" href="{% static 'img/favicon.png' %} " type="image/png">
 	  <title>Upload</title>
 	  <!-- Bootstrap CSS -->
 	  <link rel="stylesheet" href="{% static 'css/bootstrap.css ' %}">
@@ -101,9 +101,8 @@
 							</a>
 						</li>
             <li>
-							<a href="#">
+							<a href="{% url 'UserInfo' %}">
 								<i class="lnr lnr-user"></i>
-								
                   {{uname}}
                 
 							</a>

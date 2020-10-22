@@ -162,6 +162,7 @@ class Data_Preprocess:
       os.chdir(os.path.join(BASE_DIR, 'madripweb/scans'))
       os.rmdir('temp')
       os.mkdir('temp')
+      return True
 
 #--------------Identification---------------
 
@@ -230,9 +231,6 @@ class Stage_Identification:
         model = torch.hub.load('pytorch/vision:v0.6.0', 'googlenet', pretrained=False, init_weights=True)
         PATH = os.path.join(BASE_DIR, 'madripweb/dr3.pth')
         model.load_state_dict(torch.load(PATH,map_location='cpu'))
-
-        print("Model Loaded")
-
         model.eval()
         model.to("cpu")
 
@@ -240,14 +238,23 @@ class Stage_Identification:
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
-        rootdir=os.path.join(BASE_DIR, 'madripweb/scans/Results')
+        rootdir=os.path.join(BASE_DIR, 'madripweb\\scans\\Results')
         imgnamelist=self.subjectImage
-        print("Retinopathy Stage: ",self.detectStage(model,[imgnamelist],rootdir,t))
+        global stage
+        stage = self.detectStage(model,[imgnamelist],rootdir,t)
+        return stage
 
 #main
 
-obj = Data_Preprocess(image_name)
-obj.Preprocess_Upload()
-identify = Stage_Identification()
-identify.setsubjectImage(image_name)
-identify.DisplayResult()
+if sys.argv[2] == "P":
+    obj = Data_Preprocess(image_name)
+    check = obj.Preprocess_Upload()
+    
+
+if sys.argv[2] == "I":
+    identify = Stage_Identification()
+    identify.setsubjectImage(image_name)
+    identify.DisplayResult()
+    
+    
+
