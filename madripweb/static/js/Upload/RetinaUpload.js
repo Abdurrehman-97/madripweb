@@ -62,6 +62,10 @@ function ekUpload(){
     // console.log(fileType);
     var imageName = file.name;
 
+    function getFname(){
+      document.getElementById("name").innerHTML = imageName;
+    }
+
     var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
     if (isGood) {
       document.getElementById('start').classList.add("hidden");
@@ -70,6 +74,7 @@ function ekUpload(){
       // Thumbnail Preview
       document.getElementById('file-image').classList.remove("hidden");
       document.getElementById('file-image').src = URL.createObjectURL(file);
+      document.getElementById("name").innerHTML = imageName;
     }
     else {
       document.getElementById('file-image').classList.add("hidden");

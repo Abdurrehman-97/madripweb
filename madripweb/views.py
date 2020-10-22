@@ -6,6 +6,8 @@ from django.core.files.storage import FileSystemStorage
 import os
 from . import settings
 
+u_name=""
+
 def home(request):
     return render(request, 'Home.html')
 
@@ -41,13 +43,14 @@ def Signin(request):
     
     option = "L"
     uname=request.POST.get('uname')
+    u_name=uname
     pwd=request.POST.get('pass')
     out = run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb/verify.py'),option,uname,pwd],shell=False,stdout=PIPE)
     print(out)
     return render(request, 'Intermediary.html',{"data2" : out.stdout,"uname" : uname})
 
 def RetinaUpload(request):
-    return render(request,'RetinaScanUpload.html')
+    return render(request,'RetinaScanUpload.html',{"uname": u_name})
 
 def ProcessUpload(request):
     scan=request.FILES['fileUpload']
