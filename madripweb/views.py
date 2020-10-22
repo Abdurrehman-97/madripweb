@@ -5,6 +5,7 @@ import sys
 from django.core.files.storage import FileSystemStorage
 import os
 from . import settings
+from django.utils.safestring import mark_safe
 
 
 
@@ -47,7 +48,9 @@ def Signin(request):
     pwd=request.POST.get('pass')
     out = run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\verify.py'),option,uname,pwd],shell=False,stdout=PIPE)
     print(out)
-    return render(request, 'Intermediary.html',{"data2" : out.stdout,"uname" : uname})
+    out = out.stdout
+    result = out.decode('utf-8')
+    return render(request, 'Intermediary.html',{"data2" : mark_safe(result),"uname" : u_name})
 
 def RetinaUpload(request):
     return render(request,'RetinaScanUpload.html',{"uname": u_name})
@@ -78,10 +81,26 @@ def IdentifyUpload(request):
     print("File name..........",file_name)
     dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\process.py'),file_name,option],shell=False,stdout=PIPE)
     print("------------",dir)
-    return render(request,'Results.html',{"result": dir.stdout,"uname" : u_name})
+    out = dir.stdout
+    result = out.decode('utf-8')
+    return render(request,'Results.html',{"result": mark_safe(result),"uname" : u_name})
 
 def UserInfo(request):
     option="I"
-    dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\verify.py'),option],shell=False,stdout=PIPE)
+    dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\verify.py'),option,u_name],shell=False,stdout=PIPE)
     print(".........User...",dir)
-    return render(request,'UserInfo.html',{"result": dir.stdout,"uname" : u_name})
+    out = dir.stdout
+    result = out.decode('utf-8')
+    print(result)
+    return render(request,'UserInfo.html',{"result": mark_safe(result),"uname" : u_name})
+
+
+def ExtractFeatures(request):
+    option="E"
+    dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\process.py'),file_name,option],shell=False,stdout=PIPE)
+    print(".........Result file",file_name)
+    out = dir.stdout
+    result = out.decode('utf-8')
+    print(mark_safe(result))
+    return render(request,'ExtractFeatures.html',{"result_image": mark_safe(result),"uname" : u_name})
+   

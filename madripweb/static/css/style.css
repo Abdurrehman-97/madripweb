@@ -557,6 +557,11 @@ a {
 =========================================================================================== */
 /* Start Our Service Area
 =========================================================================================== */
+.service_area .section_gap h1{
+  color: #000000;
+
+}
+
 .single_service {
   text-align: center; }
   .single_service .lnr {
@@ -564,7 +569,8 @@ a {
     color: #3face4; }
   .single_service h4 {
     transition: all 300ms linear 0s;
-    margin: 20px 0px; }
+    margin: 20px 0px;
+    color: #007bff; }
   .single_service p {
     margin: 0; }
   .single_service:hover {

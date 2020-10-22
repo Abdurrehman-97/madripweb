@@ -1,5 +1,6 @@
 import cv2
 import matplotlib.pyplot as plt
+from copy import deepcopy
 import numpy as np
 import pandas as pd
 import os
@@ -242,7 +243,80 @@ class Stage_Identification:
         imgnamelist=self.subjectImage
         global stage
         stage = self.detectStage(model,[imgnamelist],rootdir,t)
-        return stage
+        print("Retinopathy stage: ", stage)
+
+
+
+    def Extract(self):
+
+        os.chdir(os.path.join(BASE_DIR, 'madripweb/scans'))
+
+        imgName = image_name
+        
+        img = cv2.imread(imgName)
+
+        imS = cv2.resize(img, (512, 512))
+
+        green_image = imS.copy()
+        green_image[:, :, 0] = 0
+        green_image[:, :, 2] = 0
+
+        gray = cv2.cvtColor(green_image, cv2.COLOR_BGR2GRAY)
+        ret, thresh1 = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
+
+        newName = imgName.split('.')
+        newName2 = deepcopy(newName)
+        newName.insert(1, '_exudate.')
+        exudateImg = ""
+        for i in newName:
+            exudateImg += i
+        newName2.insert(1, '_ftmaped.')
+        ftmap = ""
+        for i in newName2:
+            ftmap += i
+
+
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+
+        img_dilation = cv2.dilate(thresh1, kernel, iterations=2)
+        img_erosion = cv2.erode(img_dilation, kernel, iterations=2)
+
+        # cv2.imshow('Input', thresh1)
+        # cv2.imshow('Dilation', img_dilation)
+        # cv2.imshow('Erosion', img_erosion)
+
+        newName = imgName.split('.')
+        os.chdir(os.path.join(BASE_DIR, 'madripweb\\scans'))
+        
+        cv2.imwrite(exudateImg, img_erosion)
+
+        _, cnt, _ = cv2.findContours(
+            img_erosion, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+
+        def removearray(L, arr):
+            ind = 0
+            size = len(L)
+            while ind != size and not np.array_equal(L[ind], arr):
+                ind += 1
+            if ind != size:
+                L.pop(ind)
+            else:
+                raise ValueError('array not found in list.')
+
+
+        i = 0
+        while i < 2 and i < len(cnt):
+            c = deepcopy(max(cnt, key=cv2.contourArea))
+            removearray(cnt, c)
+            i = i+1
+
+        #sshow
+        path= os.path.join(BASE_DIR, 'madripweb\\scans\\') + ftmap
+        cv2.imwrite(ftmap, cv2.drawContours(imS, cnt, -1, (240, 120, 0), 2))
+        print(path)
+        
+
 
 #main
 
@@ -256,5 +330,8 @@ if sys.argv[2] == "I":
     identify.setsubjectImage(image_name)
     identify.DisplayResult()
     
+if sys.argv[2] == "E":
+    extract = Stage_Identification()
+    extract.Extract()
     
 

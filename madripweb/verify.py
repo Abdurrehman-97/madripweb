@@ -64,13 +64,18 @@ class User:
 
     def UserInfo(self):
 
-        d = dict()
-        d['name'] = u.getName()
-        d['uname'] = u.getuserName()
-        d['email'] = u.getEmail()
-        d['phn'] = u.getPhone()
-        d['org'] = u.getOrganisation()
-        return d
+        uname = sys.argv[2]
+        result = collection.find({'UserName':uname})
+        for i in result:
+            u.setName(i["Name"])
+            u.setEmail(i["Email"])
+            u.setPhn(i["Phone"])
+            u.setOrganisation(i["Organisation"])
+
+        print("Name: ", u.getName(), "<br>")
+        print("Email: ", u.getEmail(), "<br>")
+        print("Phone: ", u.getPhone(), "<br>")
+        print("Organisation: ", u.getOrganisation(), "<br>")
     
     def SignIn(self,uname,password):
         #verrify the user details
@@ -134,4 +139,4 @@ if sys.argv[1] == "L":
 
 if sys.argv[1] == "I":
 
-    print(u.UserInfo())
+    u.UserInfo()
