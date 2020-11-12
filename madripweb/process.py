@@ -43,7 +43,7 @@ class Data_Preprocess:
 #         wpercent = (basewidth / float(res.size[0]))
 #         hsize = int((float(res.size[1]) * float(wpercent)))
 #         res = res.resize((basewidth, hsize), PIL.Image.ANTIALIAS)
-# #         _srcf.save(self.ImageName)
+#         _srcf.save(self.ImageName)
         res = cv2.imread(self.ImageName,cv2.IMREAD_UNCHANGED)
         scale_percent = 10 # percent of the original image size
         width = int(res.shape[1] * scale_percent / 100)
@@ -65,7 +65,7 @@ class Data_Preprocess:
         x,y,w,h = cv2.boundingRect(cnt)
         result = br[y:y+h,x:x+w]
         return result
-        # return None
+        
     
     def Crop(self):
         
