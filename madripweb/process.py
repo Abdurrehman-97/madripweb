@@ -312,7 +312,9 @@ class Stage_Identification:
             i = i+1
 
         #sshow
-        path= os.path.join(BASE_DIR, 'madripweb\\scans\\') + ftmap
+        #path = os.path.join(BASE_DIR, 'madripweb\\static\\Results' + ftmap)
+        path = '\\static\\Results\\' + ftmap
+        os.chdir(os.path.join(BASE_DIR, 'madripweb\\static\\Results'))
         cv2.imwrite(ftmap, cv2.drawContours(imS, cnt, -1, (240, 120, 0), 2))
         print(path)
         

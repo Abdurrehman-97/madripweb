@@ -66,7 +66,7 @@ function ekUpload(){
       document.getElementById("name").innerHTML = imageName;
     }
 
-    var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
+    var isGood = (/\.(?=gif|jpg|png|jpeg|tif)/gi).test(imageName);
     if (isGood) {
       document.getElementById('start').classList.add("hidden");
       document.getElementById('response').classList.remove("hidden");

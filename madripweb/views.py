@@ -71,7 +71,8 @@ def ProcessUpload(request):
     dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\process.py'),f_name,option],shell=False,stdout=PIPE)
     print("------------",dir)
     print("-------------",u_name)
-    return render(request,'UserOptions.html',{"uname": u_name})
+    path = '\\scans\\' + file_name
+    return render(request,'UserOptions.html',{"uname": u_name, "subject_image":path})
 
 def UserOptions(request):
     return render(request,'UserOptions.html',{"uname": u_name})
