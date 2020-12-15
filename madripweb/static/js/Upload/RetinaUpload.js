@@ -66,12 +66,12 @@ function ekUpload(){
       document.getElementById("name").innerHTML = imageName;
     }
 
-    var isGood = (/\.(?=gif|jpg|png|jpeg|tif)/gi).test(imageName);
+    var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
     if (isGood) {
       document.getElementById('start').classList.add("hidden");
       document.getElementById('response').classList.remove("hidden");
       document.getElementById('notimage').classList.add("hidden");
-      // Thumbnail Preview
+      // Thumbnail Preview of file_name
       document.getElementById('file-image').classList.remove("hidden");
       document.getElementById('file-image').src = URL.createObjectURL(file);
       document.getElementById("name").innerHTML = imageName;
@@ -93,12 +93,22 @@ function ekUpload(){
     }
   }
 
-  function updateFileProgress(e) {
+  function updateFileProgress() {
     var pBar = document.getElementById('file-progress');
+    var width = 10;
+    var id = setInterval(frame, 10);
 
-    if (e.lengthComputable) {
-      pBar.value = e.loaded;
+    function frame(){
+      if(width >= 100){
+        clearInterval(id);
+        i=0;
+      }else{
+        width++;
+        pBar.style.width = width + "%";
+        pBar.innerHTML = width + "%";
+      }
     }
+    
   }
 
   function uploadFile(file) {
@@ -112,8 +122,8 @@ function ekUpload(){
       if (file.size <= fileSizeLimit * 1024 * 1024) {
         // Progress bar
         pBar.style.display = 'inline';
-        xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
-        xhr.upload.addEventListener('progress', updateFileProgress, false);
+        xhr.upload.addEventListener('loadstart', setProgressMaxValue(100), true);
+        xhr.upload.addEventListener('progress', updateFileProgress, true);
 
         // File received / failed
         xhr.onreadystatechange = function(e) {

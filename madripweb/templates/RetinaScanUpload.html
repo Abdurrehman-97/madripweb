@@ -10,6 +10,7 @@
 	  <link rel="icon" href="{% static 'img/favicon.png' %} " type="image/png">
 	  <title>Upload</title>
 	  <!-- Bootstrap CSS -->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	  <link rel="stylesheet" href="{% static 'css/bootstrap.css ' %}">
 	  <link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
 	  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
@@ -18,12 +19,14 @@
 	  <link rel="stylesheet" href="{% static 'vendors/nice-select/css/nice-select.css' %} ">
 	  <link rel="stylesheet" href="{% static 'vendors/animate-css/animate.css' %} ">
 	  <link rel="stylesheet" href="{% static 'vendors/jquery-ui/jquery-ui.css' %}">
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {% comment %} <link rel="stylesheet" href="{% static 'css/Upload/RetinaUpload.css' %}"> {% endcomment %}
 	  <!-- main css -->
 	  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 	  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-
-    <script type="text/javascript" src="{% static 'js/Upload/RetinaUpload.js' %} "></script>
+	  <link re="stylesheets" href="{% static 'css/circular_progress.css' %}">
+    {% comment %} <script type="text/javascript" src="{% static 'js/Upload/RetinaUpload.js' %} "></script> {% endcomment %}
     
   </head>
 
@@ -103,7 +106,7 @@
             <li>
 							<a href="{% url 'UserInfo' %}">
 								<i class="lnr lnr-user"></i>
-                  {{uname}}
+                  					{{uname}}
                 
 							</a>
 						</li>
@@ -159,10 +162,69 @@
                   <div id="start">
                     <br><br>
                     {% comment %} <input type="submit" value="Submit"> {% endcomment %}
-                    <input id="submit-btn" type="submit" class="btn btn-primary"></input>
+                    <button id="submit-btn" type="submit" class="btn btn-primary" onclick="move()">Submit</button>
+					{% comment %} <progress class="progress-bar-animated" id="file-progress" value="0">
+						<span>0</span>%
+					</progress> {% endcomment %}
+					<div class="circular">
+						<div class="inner">
+						</div>
+						<div class="outer">
+						</div>
+						<div id="numb">0%</div>
+						<div class="circle">
+							<div class="dot">
+								<span></span>
+							</div>
+						<div class="bar left">
+							<div class="progress">
+							</div>
+						</div>
+						<div class="bar right">
+							<div class="progress">
+							</div>
+						</div>
+						</div>
+					</div>
+					<script>
+					function move(){
+						const numb = document.getElementById("numb");
+						let counter = 0;
+						setInterval(()=>{
+							if (counter == 100){
+								clearInterval();
+							}else{
+								counter+=1;
+								numb.textContent = counter + "%";
+							}
+						}, 80);
+					}
+					</script>
+					{% comment %} <script>
+						var i =0;
+						function move(){
+							if(i == 0){
+								i = 1;
+								var pBar = document.getElementById('file-progress');
+    							var width = 1;
+    							var id = setInterval(frame, 1);
+    							function frame(){
+      								if(width >= 1000){
+        								clearInterval(id);
+        								i=0;
+      								}else{
+        								width + =1;
+        								pBar.style.width = width + "%";
+        								pBar.innerHTML = width + "%";
+      								}
+    							}
+							}
+						}
+					</script> {% endcomment %}
                   </div>
                   <div id="response" class="show">
                     <div id="messages"></div>
+	
                     </div>
                 </label>
             </form> 

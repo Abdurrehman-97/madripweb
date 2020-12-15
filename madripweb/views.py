@@ -71,11 +71,12 @@ def ProcessUpload(request):
     dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\process.py'),f_name,option],shell=False,stdout=PIPE)
     print("------------",dir)
     print("-------------",u_name)
-    path = '\\scans\\' + file_name
+    global path
+    path = '\\scans\\' + file_name    
     return render(request,'UserOptions.html',{"uname": u_name, "subject_image":path})
 
 def UserOptions(request):
-    return render(request,'UserOptions.html',{"uname": u_name})
+    return render(request,'UserOptions.html',{"uname": u_name,"subject_image":path})
 
 def IdentifyUpload(request):
     option = "I"
@@ -84,7 +85,8 @@ def IdentifyUpload(request):
     print("------------",dir)
     out = dir.stdout
     result = out.decode('utf-8')
-    return render(request,'Results.html',{"result": mark_safe(result),"uname" : u_name})
+    print("Results -- ", result)
+    return render(request,'Results.html',{"DR": mark_safe(result),"uname" : u_name})
 
 def UserInfo(request):
     option="I"
