@@ -34,6 +34,7 @@ urlpatterns = [
     path('Results/',views.IdentifyUpload,name="Results"),
     path('ExtractFeatures/', views.ExtractFeatures,name='ExtractFeatures'),
     path('ResultDME/', views.IdentifyDME,name='ResultDME'),
+    path('Report/', views.GetReport,name='GetReport'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -117,4 +117,14 @@ def IdentifyDME(request):
     result = out.decode('utf-8')
     print("Results -- ", result)
     return render(request,'ResultDME.html',{"DME": mark_safe(result),"uname" : u_name})
+
+def GetReport(request):
+    option = "G"
+    dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\process.py'),file_name,option],shell=False,stdout=PIPE)
+    out = dir.stdout
+    result = out.decode('utf-8')
+    print("Results -- ", result)
+    return render(request,'Report.html',{"report": mark_safe(result),"uname" : u_name})
+
+
    

@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="{% static 'img/favicon.png' %} " type="image/png">
-	<title>User Options</title>
+	<title>Result</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{% static 'css/bootstrap.css ' %}"">
 	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
@@ -116,21 +116,15 @@
 			<div class="container">
 				<div class="banner_content row">
 					<div class="col-lg-12">
-						<h1>Upload Successful </h1>
+						<h1>{{uname}} report is here</h1>
+						
 						<p>
-						Subject image <br>
-						<img src = "{{subject_image}}" height=250 width=250>
+						<a href="{% static 'Report.pdf' %}">Report</a>
+                        
 						</p>
-						<h2>
-							<br>
-                            Choose further options 
-                            <br><br>
-						</h2>
-						<a class="main_btn mr-10" href="{% url 'Results' %}">Identify DR</a>
-						<a class="main_btn mr-10" href="{% url 'ResultDME' %}">Identify DME</a>
-						<a class="main_btn mr-10" href="{% url 'ExtractFeatures' %}">Extract Features</a>
-						<a class="main_btn mr-10" href="{% url 'GetReport' %}">Get Report</a>
+						<a class="main_btn mr-10" href="{% url 'UserOptions' %}">Options</a>
 					</div>
+					
 				</div>
 			</div>
 		</div>
