@@ -153,15 +153,15 @@ class Data_Preprocess:
       cr=self.Crop()
       os.chdir(os.path.join(BASE_DIR, 'madripweb/scans/Results'))
       cr.save(self.ImageName)
-      # ed=self.EdgeDetection()
-      # %cd "/content/drive/My Drive/User_Image/Result"
-      # plt.imsave(self.ImageName, ed, cmap='gray', format='jpeg')
+      ed=self.EdgeDetection()
+      os.chdir(os.path.join(BASE_DIR, 'madripweb/static/BloodVImage'))
+      plt.imsave(self.ImageName, ed, cmap='gray', format='jpeg')
 
       #remove the temp folder
 
       os.chdir(os.path.join(BASE_DIR, 'madripweb/scans/temp'))
       os.remove(image_name)
-      os.chdir(os.path.join(BASE_DIR, 'madripweb/scans'))
+      os.chdir(os.path.join(BASE_DIR, 'madripweb/scans/'))
       os.rmdir('temp')
       os.mkdir('temp')
       return True
@@ -261,12 +261,19 @@ class Stage_Identification:
         print("Retinopathy stage: ", stage)
 
 
+class Feature_Extraction:
+
+    def __init__(self,image):
+
+        self.subjectImage = image
+        self.resultantImage = ""
+
     def Extract(self):
         
 
         os.chdir(os.path.join(BASE_DIR, 'madripweb/scans'))
 
-        imgName = image_name
+        imgName = self.subjectImage
         
         img = cv2.imread(imgName)
 
@@ -327,14 +334,29 @@ class Stage_Identification:
 
         #sshow
         #path = os.path.join(BASE_DIR, 'madripweb\\static\\Results' + ftmap)
-        path = '\\static\\Results\\' + ftmap
-        os.chdir(os.path.join(BASE_DIR, 'madripweb\\static\\Results'))
+        self.resultantImage = ftmap
+        path = '\\static\\ExudateImage\\' + ftmap
+        os.chdir(os.path.join(BASE_DIR, 'madripweb\\static\\ExudateImage'))
         cv2.imwrite(ftmap, cv2.drawContours(imS, cnt, -1, (240, 120, 0), 2))
-        print(path)
+        return path
 
+    def DisplayResult(self):
+        path = self.Extract()
+        print (path)
+
+
+
+
+
+class DME_Identification:
+    def __init__(self):
+        self.Stage=-1
+        self.stageName=""
+        self.ImageName=""
 
     def identifyDME(self,name,gpu=None):
 
+        self.ImageName = name
         all_output = []
         all_output_dme = []
         normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
@@ -377,12 +399,6 @@ class Stage_Identification:
         model.to('cpu')
         with torch.no_grad():
 
-            # for i, (input) in enumerate(img_loader):
-            #     # print(i)
-
-            #     if  gpu is not None:
-            #         input = input.cuda( gpu, non_blocking=True)
-
             dataiter = iter(img_loader)
             input= dataiter.next()
             output = model(input)
@@ -398,9 +414,17 @@ class Stage_Identification:
             pr_dr = np.argmax(all_output,axis=1)
             pr_dme = np.argmax(all_output_dme,axis=1)
 
-            print("DR_stage : ", pr_dr[0])
-            print("DME_stage : ", pr_dme[0])
+            return (pr_dr[0],pr_dme[0])
             # print(pr_dr[0],pr_dme[0])
+
+    def DisplayDMEresult(self,name,option):
+
+        dr , dme = self.identifyDME(name)
+        if option == "M":
+            print("DME stage: ",dme)
+        if option == "R":
+            print("DR stage: ",dr)
+        
 
         
 
@@ -413,15 +437,17 @@ if sys.argv[2] == "P":
     check = obj.Preprocess_Upload()
     
 
-if sys.argv[2] == "I":
-    identify = Stage_Identification()
-    identify.setsubjectImage(image_name)
-    # identify.DisplayResult()
+if sys.argv[2] == "R":
+    identify = DME_Identification()
+    identify.DisplayDMEresult(image_name,sys.argv[2])
+
+if sys.argv[2] == "M":
+    identify = DME_Identification()
+    identify.DisplayDMEresult(image_name,sys.argv[2])
     
-    identify.identifyDME(image_name)
     
 if sys.argv[2] == "E":
-    extract = Stage_Identification()
-    extract.Extract()
+    extract = Feature_Extraction(image_name)
+    extract.DisplayResult()
     
 

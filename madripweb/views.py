@@ -79,7 +79,7 @@ def UserOptions(request):
     return render(request,'UserOptions.html',{"uname": u_name,"subject_image":path})
 
 def IdentifyUpload(request):
-    option = "I"
+    option = "R"
     print("File name..........",file_name)
     dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\process.py'),file_name,option],shell=False,stdout=PIPE)
     print("------------",dir)
@@ -104,6 +104,17 @@ def ExtractFeatures(request):
     print(".........Result file",file_name)
     out = dir.stdout
     result = out.decode('utf-8')
-    print(mark_safe(result))
-    return render(request,'ExtractFeatures.html',{"result_image": mark_safe(result),"uname" : u_name})
+    print("E-result1",mark_safe(result))
+    result2 = '\\static\\BloodVImage\\' + file_name
+    return render(request,'ExtractFeatures.html',{"exudate_image": mark_safe(result),"uname" : u_name, "blood_image" : result2})
+
+def IdentifyDME(request):
+    option = "M"
+    print("File name..........",file_name)
+    dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\process.py'),file_name,option],shell=False,stdout=PIPE)
+    print("------------",dir)
+    out = dir.stdout
+    result = out.decode('utf-8')
+    print("Results -- ", result)
+    return render(request,'ResultDME.html',{"DME": mark_safe(result),"uname" : u_name})
    

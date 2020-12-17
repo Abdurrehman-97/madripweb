@@ -111,22 +111,20 @@
 
     
 	<!--================Header Menu Area =================-->
-       <section class="home_banner_area" >
+       <section class="home_banner_area">
 		<div class="banner_inner d-flex align-items-center">
 			<div class="container">
 				<div class="banner_content row">
 					<div class="col-lg-12">
-					
-						<h5>Exudates in the subject image</h5>
+						<h1>{{uname}} results are here</h1>
+						<h2>With an accuraccy of 78%</h2>
 						<p>
-							
-						Key:<br>
-						Blue Border ==> Exudates 
-						<br>
-						<img src = "{{exudate_image}}" height=250 width=250>
-						<br>
-						<h5> Detected Blood Vessels </h5>
-						<img src = "{{blood_image}}" height=250 width=250>
+							Key: <br>
+					        0 ==> No Diabetic Macular Edema <br>
+					        1 ==> Moderate	<br>
+					        2 ==> Severe <br>
+                    
+                            ---{{DME}}----
 						</p>
 						<a class="main_btn mr-10" href="{% url 'UserOptions' %}">Options</a>
 					</div>
