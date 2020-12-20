@@ -19,6 +19,7 @@
 	<!-- main css -->
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<link rel="stylesheet" href="{% static 'css/alerts.css' %}">
 
     </head>
 
@@ -97,6 +98,12 @@
 								<ul class="nav navbar-nav center_nav pull-right">
 									<li class="nav-item active">
 										<a class="nav-link" href="{% url 'Home' %}">Home</a>
+										<a class="nav-link"></a>
+										<a class="nav-link"></a>
+										<a class="nav-link"></a>
+										
+										<a class="nav-link" href="{% url 'Help' %}">Help</a>
+										<a class="nav-link"></a>
 									</li>
 									
 								</ul>
@@ -112,11 +119,16 @@
     
 	<!--================Header Menu Area =================-->
        <section class="home_banner_area">
+	
 		<div class="banner_inner d-flex align-items-center">
 			<div class="container">
 				<div class="banner_content row">
 					<div class="col-lg-12">
-						<h1>Welcome {{uname}}</h1>
+					{% comment %} <div class="alert">
+  				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  					Log In Successful.
+		</div> {% endcomment %}
+						
 						<h2>
 							<br>
                             Upload Scan to proceed further!

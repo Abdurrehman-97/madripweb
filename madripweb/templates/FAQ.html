@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html>
-    <head>
-    <!-- Required meta tags -->
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="{% static 'img/favicon.png' %} " type="image/png">
-	<title>Result</title>
+	<title>MADRIP</title>
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{% static 'css/bootstrap.css ' %}"">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css ' %}">
 	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 	<link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
@@ -19,11 +20,13 @@
 	<!-- main css -->
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+</head>
 
-    </head>
+<body>
 
-    <body>
-        <!--================Header Menu Area =================-->
+
+
+	<!--================Header Menu Area =================-->
 	<header class="header_area">
 		<div class="top_menu row m0">
 			<div class="container">
@@ -65,14 +68,6 @@
 								fyp.madrip09@gmail.com
 							</a>
 						</li>
-                        <li>
-							<a href="{% url 'UserInfo' %}">
-								<i class="lnr lnr-user"></i>
-								{% if uname %}
-                                {{uname}}
-                                {% endif %}
-							</a>
-						</li>
 					</ul>
 				</div>
 			</div>
@@ -95,14 +90,14 @@
 						<div class="row ml-0 w-100">
 							<div class="col-lg-12 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
-									<li class="nav-item active">
+									<li class="nav-item active" >
 										<a class="nav-link" href="{% url 'Home' %}">Home</a>
-										<a class="nav-link"></a>
+                                        <a class="nav-link"></a>
 										<a class="nav-link"></a>
 										<a class="nav-link"></a>
 										
 										<a class="nav-link" href="{% url 'Help' %}">Help</a>
-										<a class="nav-link"></a>
+                                        <a class="nav-link"></a>
 									</li>
 									
 								</ul>
@@ -113,45 +108,83 @@
 			</nav>
 		</div>
 	</header>
-
-
-    
 	<!--================Header Menu Area =================-->
-       <section class="home_banner_area">
+
+	<!--================ Home Banner Area =================-->
+	<section class="home_banner_area">
 		<div class="banner_inner d-flex align-items-center">
 			<div class="container">
 				<div class="banner_content row">
 					<div class="col-lg-12">
-						<h1>{{uname}} results are here</h1>
-						<h2>With an accuraccy of 78%</h2>
+                    <br>
+						<h2>FAQs</h2>
 						<p>
-							Key: <br>										
-							0 ==> No Diabetic Retinaopaty <br>
-							1 ==> Mild	<br>
-							2 ==> Moderate <br>
-							3 ==> Severe <br>	
-                    
-                            ---{{DR}}----
+                        
+Q1: What are the Image formats that are accepted by the system?<br>
+
+    The system accepts the following format images:<br>
+       <t><t>- PNG<br>
+       <t><t>- JPEG<br>
+       <t><t>- JPG<br>
+Q2: How to ensure that I have uploaded the correct image?<br>
+	
+	After you have selected the Image, the name of the file is displayed on the page before you select the submit button.
+    If for any reason you pressed the button before checking the file name, no worries as the Image uploaded is displayed 
+    before you proceed with accessing any of the features. <br>
+
+Q3: Is there any specific order in which the features should be accessed?<br>
+	
+	<t>No, there is no specific order just ensure that before generating the report you have accessed the remaining features.<br>
+
+Q4: Can I Generate Report before the other features?<br>
+
+	<t>No, you can not as the Report contains the results of the other features.<br>
+
+Q5: Can the Generated Report be downloaded?<br>
+	
+	<t>Yes, the Report can be downloaded in a PDF format.<br>
+
+Q6: Can the resultant images be downloaded?<br>
+
+	<t>No, the resultant images can not be downloaded but the pictures would be displayed on the Report.<br>
+
+Q7: What should I do when after processing the system displays no result?<br>
+
+	<t>This problem often occurs due to unstable Internet connection. Refresh the page once the connection stabilizes.
+    <t>If the problem persists then you can contact the development team.<br><br>
+
 						</p>
-						<div class="col-lg-6">
-						<a class="main_btn mr-10" href="{% url 'UserOptions' %}">Options</a>
-						</div>
+						{% comment %} <a class="main_btn mr-10" href="{% url 'FAQ' %}">FAQs</a> {% endcomment %}
+						
 					</div>
-					
 				</div>
 			</div>
 		</div>
 	</section>
-        
-        
+	<!--================ End Home Banner Area =================-->
+
+	<!--================ Procedure Category Area =================-->
+	
+	
+	<!--================ End Procedure Category Area =================-->
+
+	<!--================ About Myself Area =================-->
+	
+	<!--================ End About Myself Area =================-->
 
 
-        <section class="service_area section_gap">
+	<!--================ Start Feedback Area =================-->
+
+	<!--================ End Feedback Area =================-->
+
+	<!--================ Start Offered Services Area =================-->
+	<section class="service_area section_gap">
 		<div class="container">
 			<div class="row justify-content-center section-title-wrap">
 				<div class="col-lg-12">
 					<h1>Our Offered Services</h1>
 					<p>
+						Our Offered Services<br><br>
 						Following are the services which MADRIP provides.
 					</p>
 				</div>
@@ -205,10 +238,19 @@
 			</div>
 		</div>
 	</section>
+	<!--================ End Offered Services Area =================-->
 
 
+	<!--================ Start Appointment Area =================-->
+	
+	<!--================ End Appointment Area =================-->
 
-        <footer class="footer-area section_gap">
+	<!--================ Start recent-blog Area =================-->
+	
+	<!--================ end recent-blog Area =================-->
+
+	<!--================ start footer Area =================-->
+	<footer class="footer-area section_gap">
 				<p class="col-lg-5 col-md-2 footer-text m-0" >
 				This is a Final Year Project of students of FAST NUCES Islamabad Campus batch 2016....
 				<br><br>
@@ -241,7 +283,9 @@
 	</footer>
 	<!--================ End footer Area =================-->
 
-    <!--================ Optional JavaScript =================-->
+
+
+	<!--================ Optional JavaScript =================-->
 	<!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
 	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 	<script src="{% static 'js/popper.js' %}"></script>
@@ -254,9 +298,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 	<script src="{% static 'js/mail-script.js' %}"></script>
 	<script src="{% static 'js/custom.js' %}"></script>
-
-    
-    </body>
-
+</body>
 
 </html>

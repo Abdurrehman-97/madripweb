@@ -1,16 +1,4 @@
 /*----------------------------------------------------
-@File: Default Styles
-@Author: Spondon IT
-
-This file contains the styling for the actual theme, this
-is the file you need to edit to change the look of the
-theme.
----------------------------------------------------- */
-/*=====================================================================
-@Template Name: Builder Construction 
-@Author: Spondon IT
-@Developed By: Naim Lasker
-
 @Default Styles
 
 Table of Content:
@@ -278,6 +266,7 @@ a {
   transition: background 0.4s, all 0.3s linear; }
   .header_area .main_menu {
     background: #f8f8f8; }
+  
   .header_area .navbar {
     padding: 0px;
     border: 0px;
@@ -312,7 +301,7 @@ a {
         font: 500 12px/80px "Roboto", sans-serif;
         text-transform: uppercase;
         color: #000000;
-        padding: 0px;
+        padding-left: 0px;
         display: inline-block; }
         .header_area .navbar .nav .nav-item .nav-link:after {
           display: none; }
@@ -424,7 +413,8 @@ a {
     .header_area.navbar_fixed .main_menu .header_area {
       display: none; }
     .header_area.navbar_fixed .main_menu .navbar .nav .nav-item .nav-link {
-      line-height: 70px; }
+      line-height: 70px;
+       }
 
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/

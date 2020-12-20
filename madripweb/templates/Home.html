@@ -9,7 +9,7 @@
 	<link rel="icon" href="{% static 'img/favicon.png' %} " type="image/png">
 	<title>MADRIP</title>
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{% static 'css/bootstrap.css ' %}"">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
 	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 	<link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
@@ -20,6 +20,8 @@
 	<!-- main css -->
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<link rel="stylesheet" href="{% static 'scss/style.scss' %}">
+	
 </head>
 
 <body>
@@ -92,6 +94,11 @@
 								<ul class="nav navbar-nav center_nav pull-right">
 									<li class="nav-item active">
 										<a class="nav-link" href="{% url 'Home' %}">Home</a>
+										<a class="nav-link"></a>
+										<a class="nav-link"></a>
+										<a class="nav-link"></a>
+										<a class="nav-link" href="{% url 'Help' %}">Help</a>
+										<a class="nav-link"></a>
 									</li>
 									
 								</ul>

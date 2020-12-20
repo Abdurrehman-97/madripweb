@@ -8,7 +8,8 @@ from . import settings
 from django.utils.safestring import mark_safe
 
 
-
+u_name = None
+U_name = "xyz"
 def home(request):
     return render(request, 'Home.html')
 
@@ -125,6 +126,21 @@ def GetReport(request):
     result = out.decode('utf-8')
     print("Results -- ", result)
     return render(request,'Report.html',{"report": mark_safe(result),"uname" : u_name})
+
+
+def Help(request):
+    if (u_name is None):
+        return render(request,'Help.html',{"uname": U_name})
+    else:
+        return render(request,'Help.html',{"uname": u_name})
+        
+
+    
+
+def FAQ(request):
+    
+    return render(request,'FAQ.html',{"uname": U_name})
+ 
 
 
    
