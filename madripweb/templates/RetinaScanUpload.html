@@ -162,11 +162,11 @@
                   <div id="start">
                     <br><br>
                     {% comment %} <input type="submit" value="Submit"> {% endcomment %}
-                    <button id="submit-btn" type="submit" class="btn btn-primary" onclick="move()">Submit</button>
+                    <button id="submit-btn" type="submit" class="btn btn-primary">Submit</button>
 					{% comment %} <progress class="progress-bar-animated" id="file-progress" value="0">
 						<span>0</span>%
 					</progress> {% endcomment %}
-					<div class="circular">
+					{% comment %} <div class="circular">
 						<div class="inner">
 						</div>
 						<div class="outer">
@@ -199,7 +199,7 @@
 							}
 						}, 80);
 					}
-					</script>
+					</script> {% endcomment %}
 					{% comment %} <script>
 						var i =0;
 						function move(){
