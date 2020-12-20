@@ -3,6 +3,7 @@
 # FYP-S20-09-D-MADRIP
 
 # FYP-1--------------------
+The branch FYP1 contains the code
 
 # MADRIP_v2.ipynb: 
 This file contains the initial code for a system that identifies the stage of Diabetic Retinopathy and also provides a visuallization of the results of the multi-dimensional analysis performed by the system.
