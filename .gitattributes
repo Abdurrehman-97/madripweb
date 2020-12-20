@@ -1,3 +1,0 @@
-
-madripweb/resnet50-19c8e357 filter=lfs diff=lfs merge=lfs -text
-madripweb/CANet(2).pth filter=lfs diff=lfs merge=lfs -text
