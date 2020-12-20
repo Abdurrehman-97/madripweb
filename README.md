@@ -34,7 +34,7 @@ There are also javascript files, the image uploading module is using that. Right
 
 # Running the code:
 The code stage4 branch contains the update code of MADRIP. The backend has been integrated with the front end.
-Download the project and open it on VS Code. Make sure that the Python and Django extensions are installed on VS. Also ensure that the version of Python 3 is atleast 3.7.9. Open the command palette of VS and select the Python interpreter (Python environment; ensure that it has the latest version of libraries for instance PyTorch). Download the CANet(2).pth and resnet50-19c8e357.pth and place them with the rest of the .py files of the project. Then open a new terminal and type the following command:
+Download the project and open it on VS Code. Make sure that the Python and Django extensions are installed on VS. Also ensure that the version of Python 3 is atleast 3.7.9. Open the command palette of VS and select the Python interpreter (Python environment; ensure that it has the latest version of libraries for instance PyTorch).Then open a new terminal and type the following command:
 python manage.py runserver
 After successful execution it would return the address on which you can access the website. 
 
