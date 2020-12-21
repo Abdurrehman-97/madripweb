@@ -52,8 +52,10 @@ def Signin(request):
     print(out)
     out = out.stdout
     result = out.decode('utf-8')
-    if (result == "True"):
-        return render(request, 'Intermediary.html',{"data2" : mark_safe(result),"uname" : u_name})
+    if 'T' in result:
+        
+        option = "S"
+        return render(request, 'Intermediary.html',{"data2" : mark_safe(result),"uname" : u_name,"option": option})
     else:
         option = "A"
         return render(request, "Login.html",{'option':option})

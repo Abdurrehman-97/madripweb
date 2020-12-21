@@ -39,6 +39,14 @@
 					<span class="login100-form-title">
 						User Login
 					</span>
+					{%if option == "A" %}
+					
+					<div class="alert" style="background-color: red">
+  					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  					<strong>Invalid Username or Password!</strong> 
+					</div>
+					
+					{%endif%}
 
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="text" name="uname" placeholder="User Name">
@@ -65,20 +73,11 @@
 						</button>
 					</div>
 					
-					{% comment %} <div class="alert">
-  					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-  					<strong>Please Wait!</strong> While you are being logged on to the system.
-					</div> {% endcomment %}
-
-					{%if option == "A"%}
-					{{ alert}}
-					{%endif%}
 					
-					{% comment %} <script>
-					function myFunction() {
-  						
-						}
-					</script> {% endcomment %}
+
+					
+					
+					
 
 {% comment %} <div class="button">
     <a href="{% url 'Signin' %}">

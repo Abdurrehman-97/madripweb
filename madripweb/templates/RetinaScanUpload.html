@@ -115,8 +115,8 @@
                                 {% endif %}
   								</a>
 								<ul class="dropdown-menu" style="background-color: #fff">
-    								<li style="padding-right: 10px"><a href="{% url 'UserInfo' %}">Profile</a></li>
-    								<li><a href="{% url 'Login' %}">Signout</a></li>
+    								<li style="padding-left: 70px"><a href="{% url 'UserInfo' %}">Profile</a></li>
+    								<li style="padding-left: 70px"><a href="{% url 'Login' %}">Signout</a></li>
   								</ul>
 							</div>
 						</li>
@@ -166,8 +166,8 @@
 			<div class="container">
 				<div class="banner_content row">
 					<div class="col-lg-2">
-          <h4 style="color: #FFFFFF"> Choose the scan file
-          </h4>
+          <h2 style="color: #FFFFFF"> Choose the scan file
+          </h2>
 						<br><br>
 						<!-- Upload  -->
             <form id="file-upload-form" action="/ProcessUpload/" class="uploader" method="POST"enctype="multipart/form-data" >
