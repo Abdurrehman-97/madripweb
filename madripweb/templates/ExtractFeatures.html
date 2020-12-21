@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html>
-    <head>
-    <!-- Required meta tags -->
+
+<head>
+	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="{% static 'img/favicon.png' %} " type="image/png">
 	<title>Result</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{% static 'css/bootstrap.css ' %}"">
-	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
+	<link rel=" stylesheet" href="{% static 'vendors/linericon/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 	<link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
 	<link rel="stylesheet" href="{% static 'vendors/lightbox/simpleLightbox.css' %} ">
@@ -20,13 +21,13 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    </head>
+</head>
 
-    <body>
-        <!--================Header Menu Area =================-->
+<body>
+	<!--================Header Menu Area =================-->
 	<header class="header_area">
 		<div class="top_menu row m0">
 			<div class="container">
@@ -68,14 +69,14 @@
 								fyp.madrip09@gmail.com
 							</a>
 						</li>
-                        <li>
+						<li>
 							<div class="dropdown">
 								<a class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-								<i class="lnr lnr-user"></i>
-								{% if uname %}
-                                {{uname}}
-                                {% endif %}
-  								</a>
+									<i class="lnr lnr-user"></i>
+									{% if uname %}
+									{{uname}}
+									{% endif %}
+								</a>
 								<ul class="dropdown-menu" style="background-color: #fff">
     								<li style="padding-left: 70px"><a href="{% url 'UserInfo' %}">Profile</a></li>
     								<li style="padding-left: 70px"><a href="{% url 'Login' %}">Signout</a></li>
@@ -93,8 +94,9 @@
 					<a class="navbar-brand logo_h" href="{% url 'Home' %}">
 						<img src="{% static 'img/logo2.png' %}" alt="logo2">
 					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-					 aria-expanded="false" aria-label="Toggle navigation">
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -109,11 +111,11 @@
 										<a class="nav-link"></a>
 										<a class="nav-link"></a>
 										<a class="nav-link"></a>
-										
+
 										<a class="nav-link" href="{% url 'Help' %}">Help</a>
 										<a class="nav-link"></a>
 									</li>
-									
+
 								</ul>
 							</div>
 						</div>
@@ -124,43 +126,51 @@
 	</header>
 
 
-    
-	<!--================Header Menu Area =================-->
-       <section class="home_banner_area" >
+
+	<!--================Banner Inner area =================-->
+	<section class="home_banner_area">
 		<div class="banner_inner d-flex align-items-center">
 			<div class="container">
-				<div class="banner_content row">
+				<div class="banner_content">
 					<div class="col-lg-12">
-						
-							<h5 style="color: #FFFFFF">Exudates in the subject image</h5>
-							<p>	
-							Key:<br>
-							Blue Border ==> Exudates 
-						
-							<img src = "{{exudate_image}}" height=250 width=250>
-						
-						<br>
 						<div class="row">
-							<h5 style="color: #FFFFFF"> Detected Blood Vessels </h5>
-							<img src = "{{blood_image}}" height=250 width=250>
+							<h3>
+								Features Extracted
+							</h3>
 						</div>
-						</p>
-						<a class="main_btn mr-10" href="{% url 'UserOptions' %}">Options</a>
+						<div class="justify-content-center row">
+							<span>
+								<h5>
+									Detected Exudates
+								</h5>
+								<br>
+								<img src="{{exudate_image}}" height=250 width=250>
+							</span>
+							<span>
+								<h5>
+									Detected Blood Vessels
+								</h5>
+								<br>
+								<img src="{{blood_image}}" height=250 width=250>
+							</span>
+						</div>
+						<div class="row">
+							<a class="main_btn mr-10" href="{% url 'UserOptions' %}">Options</a>
+						</div>
 					</div>
-					
 				</div>
 			</div>
 		</div>
 	</section>
-        
-        
 
 
-        <section class="service_area section_gap">
+
+
+	<section class="service_area section_gap">
 		<div class="container">
 			<div class="row justify-content-center section-title-wrap">
 				<div class="col-lg-12">
-					<h1 style="color: #000000">Our Offered Services</h1>
+					<h1>Our Offered Services</h1>
 					<p>
 						Following are the services which MADRIP provides.
 					</p>
@@ -175,7 +185,8 @@
 							<h4>Defective Area Detection</h4>
 						</a>
 						<p>
-							The effected area of the retina scan can be detected, and system can highlight all the effected areas extracted from the retina scan.
+							The effected area of the retina scan can be detected, and system can highlight all the
+							effected areas extracted from the retina scan.
 						</p>
 					</div>
 				</div>
@@ -186,7 +197,9 @@
 							<h4>Identification of the stage</h4>
 						</a>
 						<p>
-							With the help of MADRIP youy can easily identify the stage of diabetic retinopathy, our system will tell the stage of diabetic retinopathy by scanning the retina scan, once the effected areas are highlighted.
+							With the help of MADRIP youy can easily identify the stage of diabetic retinopathy, our
+							system will tell the stage of diabetic retinopathy by scanning the retina scan, once the
+							effected areas are highlighted.
 						</p>
 					</div>
 				</div>
@@ -197,7 +210,9 @@
 							<h4>MultiDimensional Analysis</h4>
 						</a>
 						<p>
-							You can have a clear insight of the specific retina scan, which includes the trends of the stage of diabetic retinopathy, some facts about the result you get with some attributes associated with it.
+							You can have a clear insight of the specific retina scan, which includes the trends of the
+							stage of diabetic retinopathy, some facts about the result you get with some attributes
+							associated with it.
 						</p>
 					</div>
 				</div>
@@ -208,7 +223,8 @@
 							<h4>Detailed Report</h4>
 						</a>
 						<p>
-							You can have a detailed report of the retina scan which includes all the information regarding to that scan at one place.
+							You can have a detailed report of the retina scan which includes all the information
+							regarding to that scan at one place.
 						</p>
 					</div>
 				</div>
@@ -218,40 +234,40 @@
 
 
 
-        <footer class="footer-area section_gap">
-				<p class="col-lg-5 col-md-2 footer-text m-0" >
-				This is a Final Year Project of students of FAST NUCES Islamabad Campus batch 2016....
-				<br><br>
+	<footer class="footer-area section_gap">
+		<p class="col-lg-5 col-md-2 footer-text m-0">
+			This is a Final Year Project of students of FAST NUCES Islamabad Campus batch 2016....
+			<br><br>
+		</p>
+		<div class="col-lg-2 col-md-6">
+			<div class="single-footer-widget mail-chimp">
+				<h6 class="mb-20">Contact Us</h6>
+				<p>
+					FAST NUCES, Islamabad, Pakistan
+					051-123-456
 				</p>
-				<div class="col-lg-2 col-md-6">
-					<div class="single-footer-widget mail-chimp">
-						<h6 class="mb-20">Contact Us</h6>
-						<p>
-							FAST NUCES, Islamabad, Pakistan
-							051-123-456
-						</p>
-					</div>
-				</div>
+			</div>
+		</div>
 
-			
-				<div class="col-lg-2 col-md-2 footer-social">
-					<a href="#">
-						<i class="fa fa-facebook"></i>
-					</a>
-					<a href="#">
-						<i class="fa fa-twitter"></i>
-					</a>
-					<a href="#">
-						<i class="fa fa-instagram"></i>
-					</a>
-					<a href="#">
-						<i class="fa fa-linkedin"></i>
-					</a>
-				</div>
+
+		<div class="col-lg-2 col-md-2 footer-social">
+			<a href="#">
+				<i class="fa fa-facebook"></i>
+			</a>
+			<a href="#">
+				<i class="fa fa-twitter"></i>
+			</a>
+			<a href="#">
+				<i class="fa fa-instagram"></i>
+			</a>
+			<a href="#">
+				<i class="fa fa-linkedin"></i>
+			</a>
+		</div>
 	</footer>
 	<!--================ End footer Area =================-->
 
-    <!--================ Optional JavaScript =================-->
+	<!--================ Optional JavaScript =================-->
 	<!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
 	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 	<script src="{% static 'js/popper.js' %}"></script>
@@ -265,8 +281,8 @@
 	<script src="{% static 'js/mail-script.js' %}"></script>
 	<script src="{% static 'js/custom.js' %}"></script>
 
-    
-    </body>
+
+</body>
 
 
 </html>
