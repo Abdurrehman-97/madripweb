@@ -134,28 +134,31 @@
 				<div class="banner_content">
 					<div class="col-lg-12">
 						<div class="row">
-							<h3>
+							<h2 style="color: #FFFFFF">
 								Features Extracted
-							</h3>
+							</h2>
 						</div>
-						<div class="justify-content-center row">
+						<div class="justify-content-left row">
 							<span>
-								<h5>
+								<h3 style="color: #FFFFFF">
 									Detected Exudates
-								</h5>
+								</h3>
 								<br>
-								<img src="{{exudate_image}}" height=250 width=250>
+								<img src="{{exudate_image}}" height=350 width=350 >
 							</span>
+							
+							
 							<span>
-								<h5>
+								<h3 style="color: #FFFFFF; padding-left: 40px">
 									Detected Blood Vessels
-								</h5>
+								</h3>
 								<br>
-								<img src="{{blood_image}}" height=250 width=250>
+								<img src="{{blood_image}}" height=350 width=350 style="padding-left: 40px">
 							</span>
 						</div>
-						<div class="row">
-							<a class="main_btn mr-10" href="{% url 'UserOptions' %}">Options</a>
+						<br><br>
+						<div class="row" >
+							<a class="main_btn mr-10" href="{% url 'UserOptions' %}" >Options</a>
 						</div>
 					</div>
 				</div>
