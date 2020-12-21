@@ -10,6 +10,7 @@ from django.utils.safestring import mark_safe
 
 u_name = None
 U_name = "xyz"
+option =""
 def home(request):
     return render(request, 'Home.html')
 
@@ -51,7 +52,11 @@ def Signin(request):
     print(out)
     out = out.stdout
     result = out.decode('utf-8')
-    return render(request, 'Intermediary.html',{"data2" : mark_safe(result),"uname" : u_name})
+    if (result == "True"):
+        return render(request, 'Intermediary.html',{"data2" : mark_safe(result),"uname" : u_name})
+    else:
+        option = "A"
+        return render(request, "Login.html",{'option':option})
 
 def RetinaUpload(request):
     return render(request,'RetinaScanUpload.html',{"uname": u_name})

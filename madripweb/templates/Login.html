@@ -70,9 +70,13 @@
   					<strong>Please Wait!</strong> While you are being logged on to the system.
 					</div> {% endcomment %}
 
+					{%if option == "A"%}
+					{{ alert}}
+					{%endif%}
+					
 					{% comment %} <script>
 					function myFunction() {
-  						alert("Hello! I am an alert box!");
+  						
 						}
 					</script> {% endcomment %}
 
