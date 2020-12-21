@@ -80,7 +80,7 @@ def UserOptions(request):
     return render(request,'UserOptions.html',{"uname": u_name,"subject_image":path})
 
 def IdentifyUpload(request):
-    option = "R"
+    option = "I"
     print("File name..........",file_name)
     dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\process.py'),file_name,option],shell=False,stdout=PIPE)
     print("------------",dir)

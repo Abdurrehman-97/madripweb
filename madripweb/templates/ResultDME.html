@@ -19,6 +19,9 @@
 	<!-- main css -->
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     </head>
 
@@ -66,12 +69,18 @@
 							</a>
 						</li>
                         <li>
-							<a href="{% url 'UserInfo' %}">
+							<div class="dropdown">
+								<a class="btn dropdown-toggle" type="button" data-toggle="dropdown">
 								<i class="lnr lnr-user"></i>
 								{% if uname %}
                                 {{uname}}
                                 {% endif %}
-							</a>
+  								</a>
+								<ul class="dropdown-menu" style="background-color: #fff">
+    								<li style="padding-right: 10px"><a href="{% url 'UserInfo' %}">Profile</a></li>
+    								<li><a href="{% url 'Login' %}">Signout</a></li>
+  								</ul>
+							</div>
 						</li>
 					</ul>
 				</div>
@@ -123,7 +132,7 @@
 				<div class="banner_content row">
 					<div class="col-lg-12">
 						<h1>{{uname}} results are here</h1>
-						<h2>With an accuraccy of 78%</h2>
+						
 						<p>
 							Key: <br>
 					        0 ==> No Diabetic Macular Edema <br>

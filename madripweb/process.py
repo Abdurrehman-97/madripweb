@@ -508,9 +508,11 @@ if sys.argv[2] == "P":
     obj = Data_Preprocess(image_name)
     check = obj.Preprocess_Upload()
     
-if sys.argv[2] == "R":
-    identify = DME_Identification()
-    identify.DisplayDMEresult(image_name,sys.argv[2])
+if sys.argv[2] == "I":
+    identify = Stage_Identification()
+    identify.setsubjectImage(image_name)
+    identify.DisplayResult()
+    # identify.DisplayDMEresult(image_name,sys.argv[2])
     
     
 if sys.argv[2] == "M":
