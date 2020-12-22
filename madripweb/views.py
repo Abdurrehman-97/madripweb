@@ -9,6 +9,7 @@ from django.utils.safestring import mark_safe
 
 
 u_name = None
+patient_id = None
 file_name = None
 U_name = "xyz"
 option =""
@@ -65,6 +66,8 @@ def RetinaUpload(request):
 
 def ProcessUpload(request):
     option="P"
+    global patient_id
+    patient_id=request.POST.get('P_id')
     scan=request.FILES['fileUpload']
     print("Image upload: ",scan)
     store=FileSystemStorage()
@@ -85,7 +88,7 @@ def ProcessUpload(request):
     result =  out.decode('utf-8')
     if 'T' in result:
         option = "S"
-        return render(request,'UserOptions.html',{"uname": u_name, "subject_image":path,"option":option})
+        return render(request,'UserOptions.html',{"uname": u_name, "subject_image":path,"option":option,"patient_id":patient_id})
     else:
         option ="A"
         return render(request,'RetinaScanUpload.html',{"uname": u_name,"option":option})

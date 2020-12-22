@@ -237,10 +237,16 @@
 		  
 			<br><br>
 						<!-- Upload  -->
-			<div class="justify-content-left row">
+			
 			<span>
             <form id="file-upload-form" action="/ProcessUpload/" class="uploader" method="POST"enctype="multipart/form-data" >
               {% csrf_token %}
+			  <div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="P_id" placeholder="Patient ID">
+						{{data_external}}
+						<span class="focus-input100"></span>
+				</div>
+				<br><br>
               <input id="file-upload" type="file" name="fileUpload" class="btn btn-primary"accept="image/*" required/>
               {{data_external}}
               <label for="file-upload" id="file-drag">
@@ -252,7 +258,7 @@
 					</div>
 				</form>
 				</span>
-					
+				{% comment %} <div class="justify-content-center row">
 				<span>
 				<canvas style="padding-left:40px" id="circle" width="300" height="300"/>
 				<script>
@@ -285,7 +291,7 @@
 
 				</script>
 				</span>
-					</div>
+					</div> {% endcomment %}
 						</div>
 					</div>
 				</div>
