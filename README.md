@@ -38,4 +38,11 @@ Download the project and open it on VS Code. Make sure that the Python and Djang
 python manage.py runserver
 After successful execution it would return the address on which you can access the website. 
 
+# CANet.ipynb
+This python Notebook has all the code related to mounting the data loading transforming and training and validating model with it. The dataset for model training is stored in the drive in the directory Base, use the following credentials to mount the drive
+email: fyp.madrip09@gmail.com
+password: s2009d_madrip
+The images are read through the names provided in 'file_list.txt' present in the same directory while the Truth labels are present in the "Annotation_Base.xlsx"
+
+
 
