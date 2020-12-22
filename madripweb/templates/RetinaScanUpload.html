@@ -64,7 +64,6 @@
 						</li>
 					</ul>
 				</div>
-<<<<<<< HEAD
 				<div class="float-right">
 					<ul class="right_side">
 						<li>
@@ -107,8 +106,6 @@
 						</li>
 					</ul>
 				</div>
-=======
->>>>>>> f2cb8f4ad73f4148fecf25bbae9434cc92a15b46
 			</div>
 		</div>
 		<!--================Header Menu Area =================-->
@@ -196,6 +193,19 @@
 											<a class="nav-link"></a>
 											<a class="nav-link"></a>
 
+											<a class="nav-link" href="{% url 'Help' %}">Help</a>
+										<a class="nav-link"></a>
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+
 
   <!--================Header Menu Area =================-->
   <section class="home_banner_area">
@@ -217,11 +227,15 @@
 					</div>
 					
 					{%endif%}
+			
 				<div class="banner_content row">
 					<div class="col-lg-2">
+					<div class="row">
           <h2 style="color: #FFFFFF"> Upload the scan file
           </h2>
-						<br><br>
+		  </div>
+		  
+			<br><br>
 						<!-- Upload  -->
             <form id="file-upload-form" action="/ProcessUpload/" class="uploader" method="POST"enctype="multipart/form-data" >
               {% csrf_token %}
@@ -230,45 +244,43 @@
               <label for="file-upload" id="file-drag">
                   <div id="start">
                     <br><br>
-                    {% comment %} <input type="submit" value="Submit"> {% endcomment %}
+                    {% comment %} <input type="submit" value="Submit">  {% endcomment %}
+					
                     <button id="submit-btn" type="submit" class="btn btn-primary">Submit</button>
-					{% comment %} <progress class="progress-bar-animated" id="file-progress" value="0">
-						<span>0</span>%
-					</progress> {% endcomment %}
-					{% comment %} <div class="circular">
-						<div class="inner">
-						</div>
-						<div class="outer">
-						</div>
-						<div id="numb">0%</div>
-						<div class="circle">
-							<div class="dot">
-								<span></span>
-							</div>
-						<div class="bar left">
-							<div class="progress">
-=======
-											<a class="nav-link" href="{% url 'Help' %}">Help</a>
-											<a class="nav-link"></a>
-										</li>
-									</ul>
-								</div>
->>>>>>> f2cb8f4ad73f4148fecf25bbae9434cc92a15b46
-							</div>
+					</div>
+					</form>
 						</div>
 					</div>
-				</nav>
+				</div>
 			</div>
-		</header>
+		</section>
+					
+		
 
-		<!--================Header Menu Area =================-->
+		{% comment %} <!--================Header Menu Area =================-->
 		<section class="home_banner_area">
 			<div class="banner_inner d-flex align-items-center">
 				<div class="container">
+				{%if option == "S" %}
+					
+					<div class="alert" style="background-color: green">
+  					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  					<strong>Login Successful!</strong> 
+					</div>
+					
+				{%endif%}
+				{%if option == "A" %}
+					
+					<div class="alert" style="background-color: red">
+  					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  					<strong>Please upload again as the previous upload was unsuccessful</strong> 
+					</div>
+					
+					{%endif%}
 					<div class="banner_content row">
 						<div class="col-lg-5">
 							<h2 style="color: #FFFFFF">
-								Choose the scan file
+								Upload the scan file
 							</h2>
 							<br><br>
 							<!-- Upload  -->
@@ -295,13 +307,13 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> {% endcomment %}
 
 		<section class="service_area section_gap">
 			<div class="container">
 				<div class="row justify-content-center section-title-wrap">
 					<div class="col-lg-12">
-						<h style="color: #000000">Our Offered Services</h1>
+						<h1 style="color: #000000">Our Offered Services</h1>
 							<p>
 								Following are the services which MADRIP provides.
 							</p>
