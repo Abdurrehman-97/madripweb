@@ -78,8 +78,21 @@
   								</a>
 								<ul class="dropdown-menu" style="background-color: #fff">
     								<li style="padding-left: 70px"><a href="{% url 'UserInfo' %}">Profile</a></li>
-    								<li style="padding-left: 70px"><a href="{% url 'Login' %}">Signout</a></li>
+									<li style="padding-left: 70px"><a href="{% url 'RetinaUpload' %}">Upload</a></li>
+    								<li style="padding-left: 70px"><a  onclick="myFunction()" href="#">Signout</a></li>
   								</ul>
+								  <script>
+									function myFunction() {
+  												
+ 												var r = confirm("Are you sure you want to Logout");
+  												if (r == true) {
+    												document.location = "{% url 'Login' %}"
+  												} else {
+    												document.location.href = "#"
+  												}
+  												
+											}
+									</script>
 							</div>
 						</li>
 					</ul>
@@ -141,8 +154,6 @@
                             <br>
                         </p>
 						<a class="main_btn mr-10" href="{% url 'RetinaUpload' %}">Upload</a>
-                        
-						
 					</div>
 				</div>
 			</div>

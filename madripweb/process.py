@@ -82,10 +82,14 @@ class Generate_Report:
         #file.line(120,700,580,700)
         file.drawString(530,703,"MADRIP")
         file.save()
+        return True
 
     def DisplayReport(self):
         # self.collectResult()
-        self.writeResult()
+        if self.writeResult():
+            return True
+        else:
+            return False
 
 report = Generate_Report()
 report.setsubjectImage(image_name)        
@@ -507,12 +511,16 @@ class DME_Identification:
 if sys.argv[2] == "P":
     obj = Data_Preprocess(image_name)
     check = obj.Preprocess_Upload()
+    if check:
+        print("True")
+    else:
+        print("False")
     
-if sys.argv[2] == "I":
-    identify = Stage_Identification()
-    identify.setsubjectImage(image_name)
-    identify.DisplayResult()
-    # identify.DisplayDMEresult(image_name,sys.argv[2])
+if sys.argv[2] == "R":
+    identify =DME_Identification()
+    # identify.setsubjectImage(image_name)
+    # identify.DisplayResult()
+    identify.DisplayDMEresult(image_name,sys.argv[2])
     
     
 if sys.argv[2] == "M":
@@ -527,8 +535,11 @@ if sys.argv[2] == "E":
     
 
 if sys.argv[2] == "G":
-    report.DisplayReport()
-    print("exudate image: ",report.ExudateImageName)
+    if True:
+        print("True")
+    else:
+        print("False")
+
     
 
 #implement get

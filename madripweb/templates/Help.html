@@ -68,6 +68,35 @@
 								fyp.madrip09@gmail.com
 							</a>
 						</li>
+					{%if option == "U" %}
+						<li>
+							<div class="dropdown">
+								<a class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+								<i class="lnr lnr-user"></i>
+								{% if uname %}
+                                {{uname}}
+                                {% endif %}
+  								</a>
+								<ul class="dropdown-menu" style="background-color: #fff">
+    								<li style="padding-left: 70px"><a href="{% url 'UserInfo' %}">Profile</a></li>
+									<li style="padding-left: 70px"><a href="{% url 'RetinaUpload' %}">Upload</a></li>
+    								<li style="padding-left: 70px"><a onclick="myFunction()" href="#">Signout</a></li>
+  								</ul>
+								  <script>
+									function myFunction() {
+  											
+ 												var r = confirm("Are you sure you want to Logout");
+  												if (r == true) {
+    												document.location = "{% url 'Login' %}"
+  												} else {
+    												document.location.href = "#"
+  												}
+  												
+											}
+									</script>
+							</div>
+						</li>
+					{%endif%}
 						
 					</ul>
 				</div>
@@ -153,7 +182,7 @@
 				<div class="col-lg-12">
 					<h1 style="color: #000000">Our Offered Services</h1>
 					<p>
-						Our Offered Services<br><br>
+						
 						Following are the services which MADRIP provides.
 					</p>
 				</div>

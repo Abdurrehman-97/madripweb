@@ -78,8 +78,20 @@
   								</a>
 								<ul class="dropdown-menu" style="background-color: #fff">
     								<li style="padding-left: 70px"><a href="{% url 'UserInfo' %}">Profile</a></li>
-    								<li style="padding-left: 70px"><a href="{% url 'Login' %}">Signout</a></li>
+									<li style="padding-left: 70px"><a href="{% url 'RetinaUpload' %}">Upload</a></li>
+    								<li style="padding-left: 70px"><a onclick="myFunction()" href="#">Signout</a></li>
   								</ul>
+								  <script>
+									function myFunction() {
+ 												var r = confirm("Are you sure you want to Logout");
+  												if (r == true) {
+    												document.location = "{% url 'Login' %}"
+  												} else {
+    												document.location.href = "#"
+  												}
+  												
+											}
+									</script>
 							</div>
 						</li>
 					</ul>
@@ -129,13 +141,23 @@
        <section class="home_banner_area">
 		<div class="banner_inner d-flex align-items-center">
 			<div class="container">
+			
 				<div class="banner_content row">
+				{%if option == "S" %}
+					
+					<div class="alert" style="background-color: green">
+  					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  					<strong>Upload Successful!</strong> 
+					</div>
+					
+				{%endif%}
+				
 					<div class="col-lg-12">
-						<h1 style="color: #FFFFFF">Upload Successful </h1>
-						<p>
+						
+						<h3 style="color: #FFFFFF">
 						Subject image <br>
 						<img src = "{{subject_image}}" height=250 width=250>
-						</p>
+						</h3>
 						<h2 style="color: #FFFFFF">
 							<br>
                             Choose further options 

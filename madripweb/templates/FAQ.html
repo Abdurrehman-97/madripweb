@@ -68,6 +68,35 @@
 								fyp.madrip09@gmail.com
 							</a>
 						</li>
+						{%if option == "U" %}
+						<li>
+							<div class="dropdown">
+								<a class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+								<i class="lnr lnr-user"></i>
+								{% if uname %}
+                                {{uname}}
+                                {% endif %}
+  								</a>
+								<ul class="dropdown-menu" style="background-color: #fff">
+    								<li style="padding-left: 70px"><a href="{% url 'UserInfo' %}">Profile</a></li>
+									<li style="padding-left: 70px"><a href="{% url 'RetinaUpload' %}">Upload</a></li>
+    								<li style="padding-left: 70px"><a onclick="myFunction()" href="#">Signout</a></li>
+  								</ul>
+								  <script>
+									function myFunction() {
+  											
+ 												var r = confirm("Are you sure you want to Logout");
+  												if (r == true) {
+    												document.location = "{% url 'Login' %}"
+  												} else {
+    												document.location.href = "#"
+  												}
+  												
+											}
+									</script>
+							</div>
+						</li>
+					{%endif%}
 					</ul>
 				</div>
 			</div>
@@ -117,45 +146,51 @@
 				<div class="banner_content row">
 					<div class="col-lg-12">
                     <br>
-						<h2 style="color: #FFFFFF">FAQs</h2>
-						<p style="color: #FFFFFF">
+					<div class="row">
+						<h1 style="color: #FFFFFF">FAQs</h1>
+					</div>
+					<br>
+					<div class="justify-content-left row">
+					<span>
+					<h5 style="color: #FFFFFF">
                         
-Q1: What are the Image formats that are accepted by the system?<br>
+Q1: What are the Image formats that are accepted by the system?<br><br>
 
     The system accepts the following format images:<br>
        <t><t>- PNG<br>
        <t><t>- JPEG<br>
-       <t><t>- JPG<br>
-Q2: How to ensure that I have uploaded the correct image?<br>
+       <t><t>- JPG<br><br>
+Q2: How to ensure that I have uploaded the correct image?<br><br>
 	
 	After you have selected the Image, the name of the file is displayed on the page before you select the submit button.
     If for any reason you pressed the button before checking the file name, no worries as the Image uploaded is displayed 
-    before you proceed with accessing any of the features. <br>
+    before you proceed with accessing any of the features. <br><br>
 
-Q3: Is there any specific order in which the features should be accessed?<br>
+Q3: Is there any specific order in which the features should be accessed?<br><br>
 	
-	<t>No, there is no specific order just ensure that before generating the report you have accessed the remaining features.<br>
+	<t>No, there is no specific order just ensure that before generating the report you have accessed the remaining features.<br><br>
 
-Q4: Can I Generate Report before the other features?<br>
+Q4: Can I Generate Report before the other features?<br><br>
 
-	<t>No, you can not as the Report contains the results of the other features.<br>
+	<t>No, you can not as the Report contains the results of the other features.<br><br>
+</h5></span>
 
-Q5: Can the Generated Report be downloaded?<br>
+<span><h5 style="color: #FFFFFF"; padding-left:"80px">
+Q5: Can the Generated Report be downloaded?<br><br>
 	
-	<t>Yes, the Report can be downloaded in a PDF format.<br>
+	<t>Yes, the Report can be downloaded in a PDF format.<br><br>
 
-Q6: Can the resultant images be downloaded?<br>
+Q6: Can the resultant images be downloaded?<br><br>
 
-	<t>No, the resultant images can not be downloaded but the pictures would be displayed on the Report.<br>
+	<t>No, the resultant images can not be downloaded but the pictures would be displayed on the Report.<br><br>
 
-Q7: What should I do when after processing the system displays no result?<br>
+Q7: What should I do when after processing the system displays no result?<br><br>
 
 	<t>This problem often occurs due to unstable Internet connection. Refresh the page once the connection stabilizes.
     <t>If the problem persists then you can contact the development team.<br><br>
 
-						</p>
-						{% comment %} <a class="main_btn mr-10" href="{% url 'FAQ' %}">FAQs</a> {% endcomment %}
-						
+					</h5></span>
+					</div>	
 					</div>
 				</div>
 			</div>
@@ -184,7 +219,7 @@ Q7: What should I do when after processing the system displays no result?<br>
 				<div class="col-lg-12">
 					<h1 style="color: #000000">Our Offered Services</h1>
 					<p>
-						Our Offered Services<br><br>
+						
 						Following are the services which MADRIP provides.
 					</p>
 				</div>

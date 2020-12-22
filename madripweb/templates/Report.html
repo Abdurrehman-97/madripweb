@@ -79,8 +79,21 @@
   								</a>
 								<ul class="dropdown-menu" style="background-color: #fff">
     								<li style="padding-left: 70px"><a href="{% url 'UserInfo' %}">Profile</a></li>
-    								<li style="padding-left: 70px"><a href="{% url 'Login' %}">Signout</a></li>
+									<li style="padding-left: 70px"><a href="{% url 'RetinaUpload' %}">Upload</a></li>
+    								<li style="padding-left: 70px"><a  onclick="myFunction" href="#">Signout</a></li>
   								</ul>
+								  <script>
+									function myFunction() {
+  												
+ 												var r = confirm("Are you sure you want to Logout");
+  												if (r == true) {
+    												document.location = "{% url 'Login' %}"
+  												} else {
+    												document.location.href = "#"
+  												}
+  												
+											}
+									</script>
 							</div>
 						</li>
 					</ul>
@@ -131,6 +144,14 @@
 		<div class="banner_inner d-flex align-items-center">
 			<div class="container">
 				<div class="banner_content row">
+				{%if option == "S" %}
+					
+					<div class="alert" style="background-color: green">
+  					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  					<strong>Report Generation Successful</strong> 
+					</div>
+					
+				{%endif%}
 					<div class="col-lg-12">
 						<h1 style="color: #FFFFFF">Report</h1>
 						
@@ -138,7 +159,7 @@
 						<a class="btn" href="{% static 'Report.pdf' %}" target="_blank"><i class="fa fa-download"></i> Download</a>
                         
 						</p>
-						<a class="main_btn mr-10" href="{% url 'UserOptions' %}">Options</a>
+						
 					</div>
 					
 				</div>

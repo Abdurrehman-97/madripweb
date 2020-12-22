@@ -78,8 +78,21 @@
   								</a>
 								<ul class="dropdown-menu" style="background-color: #fff">
     								<li style="padding-left: 70px"><a href="{% url 'UserInfo' %}">Profile</a></li>
-    								<li style="padding-left: 70px"><a href="{% url 'Login' %}">Signout</a></li>
+									<li style="padding-left: 70px"><a href="{% url 'RetinaUpload' %}">Upload</a></li>
+    								<li style="padding-left: 70px"><a onclick="myFunction()" href="#">Signout</a></li>
   								</ul>
+								  <script>
+									function myFunction() {
+  											
+ 												var r = confirm("Are you sure you want to Logout");
+  												if (r == true) {
+    												document.location = "{% url 'Login' %}"
+  												} else {
+    												document.location.href = "#"
+  												}
+  												
+											}
+									</script>
 							</div>
 						</li>
 					</ul>
@@ -129,22 +142,30 @@
        <section class="home_banner_area">
 		<div class="banner_inner d-flex align-items-center">
 			<div class="container">
+			{%if option == "S" %}
+					
+					<div class="alert" style="background-color: green">
+  					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  					<strong>Detection Complete!</strong> 
+					</div>
+					
+				{%endif%}
 				<div class="banner_content row">
+				
 					<div class="col-lg-12">
-						<h1 style="color: #FFFFFF">{{uname}} results are here</h1>
+						<h1 style="color: #FFFFFF">Results</h1>
 						
 						<p>
 							Key: <br>										
-							0 ==> No Diabetic Retinaopaty <br>
-							1 ==> Mild	<br>
-							2 ==> Moderate <br>
-							3 ==> Severe <br>	
-                    
+							0 ==> No/Mild<br>
+							1 ==> NPDR/PDR	<br>	
+							
                             ---{{DR}}----
 						</p>
-						<div class="col-lg-6">
-						<a class="main_btn mr-10" href="{% url 'UserOptions' %}">Options</a>
-						</div>
+						<a class="main_btn mr-10" href="{% url 'ResultDME' %}">Identify DME</a>
+						<a class="main_btn mr-10" href="{% url 'ExtractFeatures' %}">Extract Features</a>
+						<a class="main_btn mr-10" href="{% url 'GetReport' %}">Get Report</a>
+						
 					</div>
 					
 				</div>

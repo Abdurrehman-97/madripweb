@@ -9,6 +9,7 @@ from django.utils.safestring import mark_safe
 
 
 u_name = None
+file_name = None
 U_name = "xyz"
 option =""
 def home(request):
@@ -53,9 +54,8 @@ def Signin(request):
     out = out.stdout
     result = out.decode('utf-8')
     if 'T' in result:
-        
         option = "S"
-        return render(request, 'Intermediary.html',{"data2" : mark_safe(result),"uname" : u_name,"option": option})
+        return render(request, 'RetinaScanUpload.html',{"data2" : mark_safe(result),"uname" : u_name,"option": option})
     else:
         option = "A"
         return render(request, "Login.html",{'option':option})
@@ -80,21 +80,32 @@ def ProcessUpload(request):
     print("------------",dir)
     print("-------------",u_name)
     global path
-    path = '\\scans\\' + file_name    
-    return render(request,'UserOptions.html',{"uname": u_name, "subject_image":path})
+    path = '\\scans\\' + file_name   
+    out = dir.stdout
+    result =  out.decode('utf-8')
+    if 'T' in result:
+        option = "S"
+        return render(request,'UserOptions.html',{"uname": u_name, "subject_image":path,"option":option})
+    else:
+        option ="A"
+        return render(request,'RetinaScanUpload.html',{"uname": u_name,"option":option})
 
 def UserOptions(request):
     return render(request,'UserOptions.html',{"uname": u_name,"subject_image":path})
 
 def IdentifyUpload(request):
-    option = "I"
+    option = "R"
     print("File name..........",file_name)
     dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\process.py'),file_name,option],shell=False,stdout=PIPE)
     print("------------",dir)
     out = dir.stdout
     result = out.decode('utf-8')
     print("Results -- ", result)
-    return render(request,'Results.html',{"DR": mark_safe(result),"uname" : u_name})
+    if 'R' in result:
+        option ="S"
+        return render(request,'Results.html',{"DR": mark_safe(result),"uname" : u_name,"option":option})
+    else:
+        return render(request,'Results.html',{"DR": mark_safe(result),"uname" : u_name})
 
 def UserInfo(request):
     option="I"
@@ -114,7 +125,11 @@ def ExtractFeatures(request):
     result = out.decode('utf-8')
     print("E-result1",mark_safe(result))
     result2 = '\\static\\BloodVImage\\' + file_name
-    return render(request,'ExtractFeatures.html',{"exudate_image": mark_safe(result),"uname" : u_name, "blood_image" : result2})
+    if 's' in result:
+        option="S"
+        return render(request,'ExtractFeatures.html',{"exudate_image": mark_safe(result),"uname" : u_name, "blood_image" : result2, "option": option})
+    else:
+        return render(request,'ExtractFeatures.html',{"exudate_image": mark_safe(result),"uname" : u_name, "blood_image" : result2})
 
 def IdentifyDME(request):
     option = "M"
@@ -124,7 +139,11 @@ def IdentifyDME(request):
     out = dir.stdout
     result = out.decode('utf-8')
     print("Results -- ", result)
-    return render(request,'ResultDME.html',{"DME": mark_safe(result),"uname" : u_name})
+    if 'D' in result:
+        option ="S"
+        return render(request,'ResultDME.html',{"DME": mark_safe(result),"uname" : u_name,"option":option})
+    else:
+        return render(request,'ResultDME.html',{"DME": mark_safe(result),"uname" : u_name})
 
 def GetReport(request):
     option = "G"
@@ -132,21 +151,29 @@ def GetReport(request):
     out = dir.stdout
     result = out.decode('utf-8')
     print("Results -- ", result)
-    return render(request,'Report.html',{"report": mark_safe(result),"uname" : u_name})
+    if 'T' in result:
+        option = "S"
+        return render(request,'Report.html',{"report": mark_safe(result),"uname" : u_name, "option":option})
+    else:
+        return render(request,'Report.html',{"report": mark_safe(result),"uname" : u_name})
+
 
 
 def Help(request):
     if (u_name is None):
         return render(request,'Help.html',{"uname": U_name})
     else:
-        return render(request,'Help.html',{"uname": u_name})
+        option = "U"
+        return render(request,'Help.html',{"uname": u_name, "option":option})
         
 
-    
-
 def FAQ(request):
-    
-    return render(request,'FAQ.html',{"uname": U_name})
+    if (u_name is None):
+        return render(request,'FAQ.html',{"uname": U_name})
+    else:
+        option = "U"
+        return render(request,'FAQ.html',{"uname": u_name, "option":option})
+
  
 
 
