@@ -237,6 +237,8 @@
 		  
 			<br><br>
 						<!-- Upload  -->
+			<div class="justify-content-left row">
+			<span>
             <form id="file-upload-form" action="/ProcessUpload/" class="uploader" method="POST"enctype="multipart/form-data" >
               {% csrf_token %}
               <input id="file-upload" type="file" name="fileUpload" class="btn btn-primary"accept="image/*" required/>
@@ -246,9 +248,44 @@
                     <br><br>
                     {% comment %} <input type="submit" value="Submit">  {% endcomment %}
 					
-                    <button id="submit-btn" type="submit" class="btn btn-primary">Submit</button>
+                    <button id="submit-btn" type="submit" class="btn btn-primary" onclick="Progress()">Submit</button>
 					</div>
-					</form>
+				</form>
+				</span>
+					
+				<span>
+				<canvas style="padding-left:40px" id="circle" width="300" height="300"/>
+				<script>
+					var ctx = document.getElementById("circle").getContext("2d");
+					var progress = 0;
+					var startRadius = 272 * Math.PI / 180;
+					var cw = ctx.canvas.width;
+					var ch = ctx.canvas.height;
+					var diff = 0;
+
+					function progressCallback() {
+  						diff = (progress * 0.01) * Math.PI * 2;
+  						ctx.clearRect(0, 0, cw, ch);
+  						ctx.lineWidth = 10;
+  						ctx.fillStyle = "#09F";
+  						ctx.strokeStyle = "#09F";
+  						ctx.textAlign = "center";
+  						ctx.fillText(progress + "%", cw * 0.5, ch * 0.5 + 2, cw);
+  						ctx.beginPath();
+  						ctx.arc(cw * 0.5, ch * 0.5, cw * 0.5 - 5, startRadius, diff + startRadius, false);
+  						ctx.stroke();
+  						if(progress >= 100){
+    						clearTimeout(progressId);   
+  							}
+  						progress++;
+					}		
+					function Progress(){
+						var progressId = setInterval(progressCallback, 0.1);
+					}
+
+				</script>
+				</span>
+					</div>
 						</div>
 					</div>
 				</div>

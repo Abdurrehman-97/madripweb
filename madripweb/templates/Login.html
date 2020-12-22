@@ -28,10 +28,42 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
+			<div class="justify-content-left row">
 				<div class="login100-pic js-tilt" data-tilt>
 				
-					<img src="{% static 'img/logo2.png' %}" alt="IMG">
+				{% comment %} <img src="{% static 'img/logo2.png' %}" alt="IMG"> {% endcomment %}
+				<canvas id="circle" width="300" height="300"/>
+				<script>
+					var ctx = document.getElementById("circle").getContext("2d");
+					var progress = 0;
+					var startRadius = 272 * Math.PI / 180;
+					var cw = ctx.canvas.width;
+					var ch = ctx.canvas.height;
+					var diff = 0;
+
+					function progressCallback() {
+  						diff = (progress * 0.01) * Math.PI * 2;
+  						ctx.clearRect(0, 0, cw, ch);
+  						ctx.lineWidth = 10;
+  						ctx.fillStyle = "#09F";
+  						ctx.strokeStyle = "#09F";
+  						ctx.textAlign = "center";
+  						ctx.fillText(progress + "%", cw * 0.5, ch * 0.5 + 2, cw);
+  						ctx.beginPath();
+  						ctx.arc(cw * 0.5, ch * 0.5, cw * 0.5 - 5, startRadius, diff + startRadius, false);
+  						ctx.stroke();
+  						if(progress >= 100){
+    						clearTimeout(progressId);   
+  							}
+  						progress++;
+					}		
+					function Progress(){
+						var progressId = setInterval(progressCallback, 20);
+					}
+
+				</script>
 					
+				</div>
 				</div>
 
 				<form action="/Signin/" method="POST" class="login100-form validate-form">
@@ -67,7 +99,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" onclick="myFunction()" >
+						<button class="login100-form-btn" onclick="Progress()" >
 							<a href="{% url 'Signin' %}">  
 							Login
 						</button>
