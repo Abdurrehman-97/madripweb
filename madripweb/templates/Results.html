@@ -144,7 +144,7 @@
 			<div class="container">
 			{%if option == "S" %}
 					
-					<div class="alert" style="background-color: green">
+					<div class="alert" style="background-color: #01CF4E">
   					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
   					<strong>Detection Complete!</strong> With 78% accuraccy.
 					</div>
@@ -153,15 +153,16 @@
 				<div class="banner_content row">
 				
 					<div class="col-lg-12">
-						<h1 style="color: #FFFFFF">Results</h1>
+						<h1 style="color: #FFFFFF">Results for Diabetic Retinopathy</h1>
 						
-						<p>
+						<h4  style="color: #FFFFFF">
 							Key: <br>										
-							0 ==> No/Mild<br>
-							1 ==> NPDR/PDR	<br>	
+							0 ==> No / Mild<br>
+							1 ==> Non-Proliferative Diabetic Retinopathy / Proliferative Diabetic Retinopathy	<br>	
 							
                             ---{{DR}}----
-						</p>
+						</h4>
+						<br>
 						<a class="main_btn mr-10" href="{% url 'ResultDME' %}">Identify DME</a>
 						<a class="main_btn mr-10" href="{% url 'ExtractFeatures' %}">Extract Features</a>
 						<a class="main_btn mr-10" href="{% url 'GetReport' %}">Get Report</a>

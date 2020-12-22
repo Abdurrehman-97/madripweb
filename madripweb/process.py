@@ -499,9 +499,9 @@ class DME_Identification:
 
         dr , dme = self.identifyDME(name)
         if option == "M":
-            print("DME stage: ",dme)
+            print("Dtected Stage: ",dme)
         if option == "R":
-            print("DR stage: ",dr)
+            print("Detected Stage: ",dr)
 
 
         

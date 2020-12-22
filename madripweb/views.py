@@ -13,6 +13,9 @@ patient_id = None
 file_name = None
 U_name = "xyz"
 option =""
+retina_stage = None
+edema_stage = None
+features = None
 def home(request):
     return render(request, 'Home.html')
 
@@ -102,9 +105,13 @@ def IdentifyUpload(request):
     dir=run([sys.executable,os.path.join(settings.BASE_DIR, 'madripweb\\process.py'),file_name,option],shell=False,stdout=PIPE)
     print("------------",dir)
     out = dir.stdout
+    
     result = out.decode('utf-8')
+    
     print("Results -- ", result)
-    if 'R' in result:
+    global retina_stage
+    retina_stage = result
+    if 'D' in result:
         option ="S"
         return render(request,'Results.html',{"DR": mark_safe(result),"uname" : u_name,"option":option})
     else:
