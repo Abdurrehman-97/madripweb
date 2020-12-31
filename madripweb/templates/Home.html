@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+{% comment %} to load css,js and images.. {% endcomment %}
 {% load static %}
 
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{% comment %} pass the resource location in href as done below.. {% endcomment %}
 	<link rel="icon" href="{% static 'img/favicon.png' %} " type="image/png">
 	<title>MADRIP</title>
 	<!-- Bootstrap CSS -->
@@ -127,7 +129,7 @@
 							{{data2 | safe}}
 							{% endif %} {% endcomment %}
 						</p>
-						<a class="main_btn mr-10" href="{% url 'Login' %}">get started</a>
+						<a class="main_btn mr-10" href="{% url 'Login' %}" style="border-radius: 25px">get started</a>
 						
 					</div>
 				</div>

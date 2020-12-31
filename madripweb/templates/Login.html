@@ -28,11 +28,14 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
+			
 			<div class="justify-content-left row">
 				<div class="login100-pic js-tilt" data-tilt>
-				
-				{% comment %} <img src="{% static 'img/logo2.png' %}" alt="IMG"> {% endcomment %}
-				<canvas id="circle" width="300" height="300"/>
+				<img src="{% static 'img/logo2.png' %}" alt="IMG" width="250" height="250" style="padding-left: 35px">
+				<div class="col-lg-12">
+				{% comment %} <canvas id="circle" width="300" height="300" >
+				</canvas> {% endcomment %}
+				</div>
 				<script>
 					var ctx = document.getElementById("circle").getContext("2d");
 					var progress = 0;
@@ -67,6 +70,7 @@
 				</div>
 
 				<form action="/Signin/" method="POST" class="login100-form validate-form">
+				
 				{% csrf_token %}
 					<span class="login100-form-title">
 						User Login

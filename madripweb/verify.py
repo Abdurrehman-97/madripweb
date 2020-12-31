@@ -1,3 +1,4 @@
+#contains User class...
 import pymongo
 from pymongo import MongoClient
 import sys
@@ -63,6 +64,7 @@ class User:
         return self.fileName
 
     def UserInfo(self):
+        #fetch the details from database..
 
         uname = sys.argv[2]
         result = collection.find({'UserName':uname})
@@ -108,12 +110,13 @@ class User:
 
 
 #Main----------------------
-
+#Connecting with the database..
 cluster = MongoClient('mongodb://test_user:testuser123@fyp-shard-00-00-djj0y.gcp.mongodb.net:27017,fyp-shard-00-01-djj0y.gcp.mongodb.net:27017,fyp-shard-00-02-djj0y.gcp.mongodb.net:27017/test?ssl=true&replicaSet=FYP-shard-0&authSource=admin&retryWrites=true&w=majority')
 db = cluster["MADRIP"]
 collection = db["Users"]
 u = User()
 
+#calling the functions according to the option passed by the function in views.py..
 if sys.argv[1] == "R":
     
     u.setName(sys.argv[2]) 

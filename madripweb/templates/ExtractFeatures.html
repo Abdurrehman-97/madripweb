@@ -145,13 +145,13 @@
 	<section class="home_banner_area">
 		<div class="banner_inner d-flex align-items-center">
 			<div class="container">
-			
+				{%if option == "S" %}
 					
 				<div class="alert" style="background-color: #01CF4E">
   				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
   				<strong>Extraction Complete!</strong> 
 				</div>
-					
+				{% endif %}
 				 
 				<div class="banner_content row">
 				
@@ -180,9 +180,9 @@
 						</div>
 						<br><br>
 						<div class="row" >
-						<a class="main_btn mr-10" href="{% url 'Results' %}">Identify DR</a>
-						<a class="main_btn mr-10" href="{% url 'ResultDME' %}">Identify DME</a>
-						<a class="main_btn mr-10" href="{% url 'GetReport' %}">Get Report</a>
+						<a class="main_btn mr-10" style="border-radius: 25px" href="{% url 'Results' %}">Identify DR</a>
+						<a class="main_btn mr-10" style="border-radius: 25px" href="{% url 'ResultDME' %}">Identify DME</a>
+						<a class="main_btn mr-10" style="border-radius: 25px" href="{% url 'GetReport' %}">Get Report</a>
 						</div>
 					</div>
 				</div>

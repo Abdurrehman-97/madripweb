@@ -30,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#set MEDIA_URL to the directory where the uploads need to be stored..
 MEDIA_URL = "/scans/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'madripweb/scans')
 
@@ -57,6 +58,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'madripweb.urls'
 
+#Set the DIRS to the directory where the HTML files are stored..
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -126,7 +128,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
+# DIRS to be set where the CSS, JS, Images and other resources 
+# that are to be displayed on web are stored..
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'madripweb/static')

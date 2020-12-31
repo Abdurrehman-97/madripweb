@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
 		id="bootstrap-css">
 	<link rel="stylesheet" href="{% static 'css/bootstrap.css ' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendors/Login/bootstrap/css/bootstrap.min.css' %} ">
 	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 	<link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
@@ -258,14 +259,14 @@
 						<span class="focus-input100"></span>
 				</div>
 				<br><br>
-              <input id="file-upload" type="file" name="fileUpload" class="btn btn-primary"accept="image/*" required/>
+              <input id="file-upload" type="file" name="fileUpload" class="btn btn-primary" style="border-radius: 25px" accept="image/*" required/>
               {{data_external}}
               <label for="file-upload" id="file-drag">
                   <div id="start">
                     <br><br>
                     {% comment %} <input type="submit" value="Submit">  {% endcomment %}
 					
-                    <button id="submit-btn" type="submit" class="btn btn-primary" onclick="Progress()">Submit</button>
+                    <button id="submit-btn" type="submit" class="main_btn mr-10" onclick="Progress()" style="border-radius: 25px">Submit</button>
 					</div>
 				</form>
 				</span>
