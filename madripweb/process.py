@@ -20,6 +20,7 @@ import reportlab
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.colors import black, blue
 from reportlab.platypus import Image as img
+from reportlab.platypus import SimpleDocTemplate 
 from reportlab.pdfgen.canvas import Canvas
 import time
 import PyPDF2   
@@ -524,22 +525,35 @@ class Generate_Report:
 
             # if it's a container, recurse
             elif isinstance(obj, pdfminer.layout.LTFigure):
+                for im in obj:
+                    if isinstance(im, pdfminer.layout.LTImage):
+                        # Found 
+                        
+                        try:
+                            imdata = im.stream.get_data()
+                        except:
+                            # Failed to decode 
+                            imdata = im.stream.get_rawdata()
+                            print(imdata)
+                        if imdata is not None and imdata.startswith(b'\xff\xd8\xff\xe0'):
+                            print(imdata)
                 self.Locating(obj._objs)
 
 
     def writeResult(self):
-        
+
         #Report name respective to patient ID..
         #create new pdf with results then merge it with the template..
         os.chdir(os.path.join(BASE_DIR, 'madripweb\\static\\'))
         name = "Report_" + sys.argv[7] + ".pdf"
         packet = io.BytesIO()
-        # create a new PDF with Reportlab
+        packet1 = io.BytesIO()
+        # create a new PDF only text with Reportlab
         can = Canvas(packet, pagesize=A4)
         can.drawString(270,344.616157418202,sys.argv[3])
         can.drawString(270,305.07963365820206,sys.argv[4])
         can.save()
-
+        
         #move to the beginning of the StringIO buffer
         packet.seek(0)
         new_pdf = PdfFileReader(packet)
@@ -548,12 +562,25 @@ class Generate_Report:
         output = PdfFileWriter()
         # add the the new pdf on the existing page
         page = existing_pdf.getPage(0)
+        page2 = existing_pdf.getPage(1)
         page.mergePage(new_pdf.getPage(0))
         output.addPage(page)
         # finally, write "output" to a real file
         outputStream = open(name, "wb")
         output.write(outputStream)
         outputStream.close()
+        #create a new PDF only images 
+        # os.chdir(os.path.join(BASE_DIR, 'madripweb\\')
+        # doc = SimpleDocTemplate("image.pdf", pagesize=A4)
+        # parts = []
+        # parts.append(img(sys.argv[5]))
+        # doc.build(parts)
+        # os.chdir(os.path.join(BASE_DIR, 'madripweb\\static\\')
+        # img_pdf = PdfFileReader("image.pdf")
+        # page2.mergePage(img_pdf.getPage(0))
+        # output.addPage(page2)
+        # output.write(outputStream)
+        # outputStream.close()
 
         #----------------------------------------------
         # file = Canvas(name, pagesize=A4)
@@ -580,8 +607,8 @@ class Generate_Report:
         # file.drawString(530,703,"MADRIP")
         # file.save()
 
-        # Open a PDF file to find content locations-------------
-        # source: stackoverflow
+        # # Open a PDF file to find content locations-------------
+        # # source: stackoverflow
         # os.chdir(os.path.join(BASE_DIR, 'madripweb\\static\\'))
         # fp = open('Report.pdf', 'rb')
 
